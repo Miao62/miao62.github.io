@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="系统中光压的推导2203 苗晋硕 引言在这篇文章中，我们将基于光在系统中辐射各向同性和光子是粒子这两个假设，推导出在系统内的辐射压强公式，找到光压$p$和能量密度$u$之间的关系。为了由浅入深，我们将先把问题简化为长方体容器，然后再尝试去推广到任意不规则容器。 对长方体容器的讨论现在有一个长方体容器，一束光以容器内任意一点为光源发出，已知这个容器内光的能量密度为$u$，求容器表面的光压。首先这个方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://miao62.github.io/blog/2024/07/24/%E5%85%89%E5%8E%8B%E7%9A%84%E6%8E%A8%E5%AF%BC/">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="系统中光压的推导2203 苗晋硕 引言在这篇文章中，我们将基于光在系统中辐射各向同性和光子是粒子这两个假设，推导出在系统内的辐射压强公式，找到光压$p$和能量密度$u$之间的关系。为了由浅入深，我们将先把问题简化为长方体容器，然后再尝试去推广到任意不规则容器。 对长方体容器的讨论现在有一个长方体容器，一束光以容器内任意一点为光源发出，已知这个容器内光的能量密度为$u$，求容器表面的光压。首先这个方">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/i3QRMQu.jpeg">
+<meta property="og:image" content="https://i.imgur.com/eF2HNaA.jpeg">
+<meta property="article:published_time" content="2024-07-24T04:29:13.663Z">
+<meta property="article:modified_time" content="2024-04-21T05:03:40.521Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/i3QRMQu.jpeg">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao62.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-24 12:29" pubdate>
+          July 24, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="系统中光压的推导"><a href="#系统中光压的推导" class="headerlink" title="系统中光压的推导"></a>系统中光压的推导</h1><p><strong>2203 苗晋硕</strong></p>
+<h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>在这篇文章中，我们将基于光在系统中辐射各向同性和光子是粒子这两个假设，推导出在系统内的辐射压强公式，找到光压$p$和能量密度$u$之间的关系。为了由浅入深，我们将先把问题简化为长方体容器，然后再尝试去推广到任意不规则容器。</p>
+<h4 id="对长方体容器的讨论"><a href="#对长方体容器的讨论" class="headerlink" title="对长方体容器的讨论"></a>对长方体容器的讨论</h4><p>现在有一个长方体容器，一束光以容器内任意一点为光源发出，已知这个容器内光的能量密度为$u$，求容器表面的光压。<br><img src="https://i.imgur.com/i3QRMQu.jpeg" srcset="/blog/img/loading.gif" lazyload alt="111"><br>首先这个方法的前提是把光看做粒子，且认为光子与容器壁作完全弹性碰撞。为了简化问题，我们可以先分析六个面中一个面的光压，设长方体的长宽高为$l_x,l_y,l_z$，分析$l_y,l_z$构成的两面中的一面。在时间t内，光走过的路程以及撞击的次数（走两个$l_x$撞一次）。<br>$$s&#x3D;ct,n&#x3D;\frac{s}{2l_x}&#x3D;\frac{ct}{2l_x}$$<br>撞击频率即<br>$$\nu&#x3D;\frac{c}{2l_x}$$<br>根据质能公式，我们可以知道光子的动量和能量存在以下换算关系：<br>$$P&#x3D;\frac{E}{c}$$<br>由此，再根据完全弹性碰撞的公式，我们可以计算出单个光子向l<del>y</del>,l<del>z</del>的一面施加的光压<br>$$p&#x3D;\frac{F_压}{l_yl_z}&#x3D;\frac{\bigtriangleup P_光\nu}{l_yl_z}&#x3D;\frac{2E}{l_yl_zc}\cdot\frac{c}{2l_x}&#x3D;\frac{E}{l_xl_yl_z}$$<br>根据题目已知给出的能量密度u，我们可以算出光子的总数量<br>$$ N&#x3D;\frac{uV}{E}&#x3D;\frac{ul_xl_yl_z}{E}$$<br>由于统计学规律，在容器内任意一个点为原点建立坐标系，沿x,y,z轴方向运动的光子数量是相同的。因此向l<del>y</del>,l<del>z</del>构成的一面撞击的光子应该占全部光子的1&#x2F;3（因为无论沿x正方向还是负方向都会撞到讨论的一面，所以不是1&#x2F;6）,因此总光压应该为<br>$$p_总&#x3D;\frac{1}{3}N\cdot p&#x3D;\frac{1}{3}\cdot\frac{ul_xl_yl_z}{E}\cdot\frac{E}{l_xl_yl_z}&#x3D;\frac{u}{3}$$</p>
+<h4 id="对普通容器的讨论"><a href="#对普通容器的讨论" class="headerlink" title="对普通容器的讨论"></a>对普通容器的讨论</h4><p>对长方体容器的讨论是对本题目的极大简化，但是系统往往不是规则的，因此我们应该尝试去讨论一个极为普通的容器，推出这个结论。学习曲率时，我们可以将一个不规则函数微分，使得极小的一段为圆弧，所以我觉得应该可以将这个不规则容器表面微分成一个一个的小球面，并设这些球面的立体角。我们取一个小球面，设它所成的立体角为$\mathrm{d}\Omega$,由于光各项同性，可以设球心为光源，因为$\mathrm{d}\Omega$足够小，所以$\mathrm{d}S$也足够小，可以认为只要光子进入这一块体积为$\mathrm{d}V$的区域，速度方向与$\mathrm{d}\vec{S}$的方向是相反的，若光子从此区域逃离，速度也是和$\mathrm{d}\vec{S}$相同的。因此，进入这块区域提供光压的光子数量为<br><img src="https://i.imgur.com/eF2HNaA.jpeg" srcset="/blog/img/loading.gif" lazyload alt="222"><br>$$n&#x3D;N\frac{\mathrm{d}\Omega}{4\pi}&#x3D; \frac{\mathrm{d}\Omega}{4\pi}\cdot\frac{Vu}{E}$$<br>而单个光子能提供的光压为<br>$$p&#x3D;\frac{F_压}{\mathrm{d}S}&#x3D;\frac{\bigtriangleup P_光\nu}{\mathrm{d}S}&#x3D;\frac{2E}{c\mathrm{d}S}\cdot\frac{c}{2r}&#x3D;\frac{E}{r\mathrm{d}S}&#x3D;\frac{E}{3\mathrm{d}V}$$<br>两者相乘，得$\mathrm{d}S$上的总光压为<br>$$p_总&#x3D;n\cdot p&#x3D;\frac{1}{3}\cdot\frac{\mathrm{d}\Omega}{4\pi}\cdot\frac{Vu}{E}\cdot\frac{E}{\mathrm{d}V}&#x3D;\frac{u}{3}\cdot\frac{1}{4\pi}\cdot\frac{V\mathrm{d}\Omega}{\mathrm{d}V}$$<br>根据数学关系可知<br>$$\mathrm{d}S&#x3D;r^2\mathrm{d}\Omega,\mathrm{d}V&#x3D;\frac{1}{3}r\mathrm{d}S,V&#x3D;\frac{4}{3}\pi r^3  $$<br>因此<br>$$ \frac{1}{4\pi}\cdot\frac{V\mathrm{d}\Omega}{\mathrm{d}V}&#x3D;\frac{1}{4\pi}\cdot\frac{\frac{4}{3}\pi r^3\cdot\frac{\mathrm{d}S}{r^2}}{\frac{1}{3}r\mathrm{d}S}&#x3D;1$$<br>可以得到<br>$$p_总&#x3D;\frac{u}{3}$$</p>
+<h5 id="暂无参考文献"><a href="#暂无参考文献" class="headerlink" title="暂无参考文献"></a>暂无参考文献</h5>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://miao62.github.io/blog/2024/07/24/光压的推导/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 24, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/blog/2024/07/24/%E5%85%89%E5%8E%8B%E7%9A%84%E6%8E%A8%E5%AF%BC/"/>
+    <url>/blog/2024/07/24/%E5%85%89%E5%8E%8B%E7%9A%84%E6%8E%A8%E5%AF%BC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="系统中光压的推导"><a href="#系统中光压的推导" class="headerlink" title="系统中光压的推导"></a>系统中光压的推导</h1><p><strong>2203 苗晋硕</strong></p><h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>在这篇文章中，我们将基于光在系统中辐射各向同性和光子是粒子这两个假设，推导出在系统内的辐射压强公式，找到光压$p$和能量密度$u$之间的关系。为了由浅入深，我们将先把问题简化为长方体容器，然后再尝试去推广到任意不规则容器。</p><h4 id="对长方体容器的讨论"><a href="#对长方体容器的讨论" class="headerlink" title="对长方体容器的讨论"></a>对长方体容器的讨论</h4><p>现在有一个长方体容器，一束光以容器内任意一点为光源发出，已知这个容器内光的能量密度为$u$，求容器表面的光压。<br><img src="https://i.imgur.com/i3QRMQu.jpeg" alt="111"><br>首先这个方法的前提是把光看做粒子，且认为光子与容器壁作完全弹性碰撞。为了简化问题，我们可以先分析六个面中一个面的光压，设长方体的长宽高为$l_x,l_y,l_z$，分析$l_y,l_z$构成的两面中的一面。在时间t内，光走过的路程以及撞击的次数（走两个$l_x$撞一次）。<br>$$s&#x3D;ct,n&#x3D;\frac{s}{2l_x}&#x3D;\frac{ct}{2l_x}$$<br>撞击频率即<br>$$\nu&#x3D;\frac{c}{2l_x}$$<br>根据质能公式，我们可以知道光子的动量和能量存在以下换算关系：<br>$$P&#x3D;\frac{E}{c}$$<br>由此，再根据完全弹性碰撞的公式，我们可以计算出单个光子向l<del>y</del>,l<del>z</del>的一面施加的光压<br>$$p&#x3D;\frac{F_压}{l_yl_z}&#x3D;\frac{\bigtriangleup P_光\nu}{l_yl_z}&#x3D;\frac{2E}{l_yl_zc}\cdot\frac{c}{2l_x}&#x3D;\frac{E}{l_xl_yl_z}$$<br>根据题目已知给出的能量密度u，我们可以算出光子的总数量<br>$$ N&#x3D;\frac{uV}{E}&#x3D;\frac{ul_xl_yl_z}{E}$$<br>由于统计学规律，在容器内任意一个点为原点建立坐标系，沿x,y,z轴方向运动的光子数量是相同的。因此向l<del>y</del>,l<del>z</del>构成的一面撞击的光子应该占全部光子的1&#x2F;3（因为无论沿x正方向还是负方向都会撞到讨论的一面，所以不是1&#x2F;6）,因此总光压应该为<br>$$p_总&#x3D;\frac{1}{3}N\cdot p&#x3D;\frac{1}{3}\cdot\frac{ul_xl_yl_z}{E}\cdot\frac{E}{l_xl_yl_z}&#x3D;\frac{u}{3}$$</p><h4 id="对普通容器的讨论"><a href="#对普通容器的讨论" class="headerlink" title="对普通容器的讨论"></a>对普通容器的讨论</h4><p>对长方体容器的讨论是对本题目的极大简化，但是系统往往不是规则的，因此我们应该尝试去讨论一个极为普通的容器，推出这个结论。学习曲率时，我们可以将一个不规则函数微分，使得极小的一段为圆弧，所以我觉得应该可以将这个不规则容器表面微分成一个一个的小球面，并设这些球面的立体角。我们取一个小球面，设它所成的立体角为$\mathrm{d}\Omega$,由于光各项同性，可以设球心为光源，因为$\mathrm{d}\Omega$足够小，所以$\mathrm{d}S$也足够小，可以认为只要光子进入这一块体积为$\mathrm{d}V$的区域，速度方向与$\mathrm{d}\vec{S}$的方向是相反的，若光子从此区域逃离，速度也是和$\mathrm{d}\vec{S}$相同的。因此，进入这块区域提供光压的光子数量为<br><img src="https://i.imgur.com/eF2HNaA.jpeg" alt="222"><br>$$n&#x3D;N\frac{\mathrm{d}\Omega}{4\pi}&#x3D; \frac{\mathrm{d}\Omega}{4\pi}\cdot\frac{Vu}{E}$$<br>而单个光子能提供的光压为<br>$$p&#x3D;\frac{F_压}{\mathrm{d}S}&#x3D;\frac{\bigtriangleup P_光\nu}{\mathrm{d}S}&#x3D;\frac{2E}{c\mathrm{d}S}\cdot\frac{c}{2r}&#x3D;\frac{E}{r\mathrm{d}S}&#x3D;\frac{E}{3\mathrm{d}V}$$<br>两者相乘，得$\mathrm{d}S$上的总光压为<br>$$p_总&#x3D;n\cdot p&#x3D;\frac{1}{3}\cdot\frac{\mathrm{d}\Omega}{4\pi}\cdot\frac{Vu}{E}\cdot\frac{E}{\mathrm{d}V}&#x3D;\frac{u}{3}\cdot\frac{1}{4\pi}\cdot\frac{V\mathrm{d}\Omega}{\mathrm{d}V}$$<br>根据数学关系可知<br>$$\mathrm{d}S&#x3D;r^2\mathrm{d}\Omega,\mathrm{d}V&#x3D;\frac{1}{3}r\mathrm{d}S,V&#x3D;\frac{4}{3}\pi r^3  $$<br>因此<br>$$ \frac{1}{4\pi}\cdot\frac{V\mathrm{d}\Omega}{\mathrm{d}V}&#x3D;\frac{1}{4\pi}\cdot\frac{\frac{4}{3}\pi r^3\cdot\frac{\mathrm{d}S}{r^2}}{\frac{1}{3}r\mathrm{d}S}&#x3D;1$$<br>可以得到<br>$$p_总&#x3D;\frac{u}{3}$$</p><h5 id="暂无参考文献"><a href="#暂无参考文献" class="headerlink" title="暂无参考文献"></a>暂无参考文献</h5>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
