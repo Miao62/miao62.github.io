@@ -97,7 +97,7 @@
     <link href="/2024/07/25/post%20-%20%E5%89%AF%E6%9C%AC%20(7)/"/>
     <url>/2024/07/25/post%20-%20%E5%89%AF%E6%9C%AC%20(7)/</url>
     
-    <content type="html"><![CDATA[<p>我喜欢你</p>]]></content>
+    <content type="html"><![CDATA[<script language="JavaScript">function password() {    var testV = 1;    var pass1 = prompt('请输入密码:','');    while (testV < 3) {        if (!pass1)            history.go(-1);        if (pass1 == "123456") {            alert('密码正确!');            break;        }        testV += -1;        var pass1 = prompt('密码错误!请重新输入:');    }    if (pass1 != "password" & testV == 3)        history.go(-1);    return " ";}document.write(password());</script>]]></content>
     
     
     <categories>
@@ -135,7 +135,7 @@
     <link href="/2024/07/25/post%20-%20%E5%89%AF%E6%9C%AC%20(4)/"/>
     <url>/2024/07/25/post%20-%20%E5%89%AF%E6%9C%AC%20(4)/</url>
     
-    <content type="html"><![CDATA[<p>我喜欢你</p>]]></content>
+    <content type="html"><![CDATA[<script language="JavaScript">function password() {    var testV = 1;    var pass1 = prompt('请输入密码:','');    while (testV < 3) {        if (!pass1)            history.go(-1);        if (pass1 == "123456") {            alert('密码正确!');            break;        }        testV += -1;        var pass1 = prompt('密码错误!请重新输入:');    }    if (pass1 != "password" & testV == 3)        history.go(-1);    return " ";}document.write(password());</script>]]></content>
     
     
     <categories>
@@ -154,7 +154,7 @@
     <link href="/2024/07/25/%E6%8E%A5%E4%B8%8B%E6%9D%A5%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A7%84%E5%88%92/"/>
     <url>/2024/07/25/%E6%8E%A5%E4%B8%8B%E6%9D%A5%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A7%84%E5%88%92/</url>
     
-    <content type="html"><![CDATA[<h3 id="学习上的规划">学习上的规划</h3><p>闲来无事写的,略显无知</p><h3 id="路线上的规划">路线上的规划</h3>]]></content>
+    <content type="html"><![CDATA[<h3 id="学习上的规划">学习上的规划</h3><script language="JavaScript">function password() {    var testV = 1;    var pass1 = prompt('请输入密码:','');    while (testV < 3) {        if (!pass1)            history.go(-1);        if (pass1 == "123456") {            alert('密码正确!');            break;        }        testV += -1;        var pass1 = prompt('密码错误!请重新输入:');    }    if (pass1 != "password" & testV == 3)        history.go(-1);    return " ";}document.write(password());</script><p>闲来无事写的,略显无知</p><h3 id="路线上的规划">路线上的规划</h3>]]></content>
     
     
     <categories>
@@ -173,7 +173,7 @@
     <link href="/2024/07/25/post%20-%20%E5%89%AF%E6%9C%AC/"/>
     <url>/2024/07/25/post%20-%20%E5%89%AF%E6%9C%AC/</url>
     
-    <content type="html"><![CDATA[<p>112</p>]]></content>
+    <content type="html"><![CDATA[<script language="JavaScript">function password() {    var testV = 1;    var pass1 = prompt('请输入密码:','');    while (testV < 3) {        if (!pass1)            history.go(-1);        if (pass1 == "123456") {            alert('密码正确!');            break;        }        testV += -1;        var pass1 = prompt('密码错误!请重新输入:');    }    if (pass1 != "password" & testV == 3)        history.go(-1);    return " ";}document.write(password());</script>]]></content>
     
     
     <categories>
@@ -192,7 +192,7 @@
     <link href="/2024/07/24/%E6%B1%82%E5%AD%A6%E7%BB%8F%E5%8E%86/"/>
     <url>/2024/07/24/%E6%B1%82%E5%AD%A6%E7%BB%8F%E5%8E%86/</url>
     
-    <content type="html"><![CDATA[<p>undefined</p>]]></content>
+    <content type="html"><![CDATA[<script language="JavaScript">function password() {    var testV = 1;    var pass1 = prompt('请输入密码:','');    while (testV < 3) {        if (!pass1)            history.go(-1);        if (pass1 == "123456") {            alert('密码正确!');            break;        }        testV += -1;        var pass1 = prompt('密码错误!请重新输入:');    }    if (pass1 != "password" & testV == 3)        history.go(-1);    return " ";}document.write(password());</script>]]></content>
     
     
     <categories>
