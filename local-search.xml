@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2024/07/28/1/"/>
+    <url>/2024/07/28/1/</url>
+    
+    <content type="html"><![CDATA[<script language="JavaScript">function password() {    var testV = 1;    var pass1 = prompt('请输入密码:','');    while (testV < 3) {        if (!pass1)            history.go(-1);        if (pass1 == "123456") {            alert('密码正确!');            break;        }        testV += -1;        var pass1 = prompt('密码错误!请重新输入:');    }    if (pass1 != "password" & testV == 3)        history.go(-1);    return " ";}document.write(password());</script>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>物理实验报告 3</title>
     <link href="/2024/07/25/%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A3/"/>
     <url>/2024/07/25/%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A3/</url>
