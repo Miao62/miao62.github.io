@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
 <meta property="article:published_time" content="2024-07-28T11:13:03.151Z">
-<meta property="article:modified_time" content="2024-08-05T10:45:22.903Z">
+<meta property="article:modified_time" content="2024-08-08T02:00:14.661Z">
 <meta property="article:author" content="Miao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          1.9k words
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
         
-          10 mins
+          16 mins
         
       </span>
     
@@ -347,9 +347,30 @@ memset根据字节来初始化数组,将value二进制化后填入数组.比如v
 <h3 id="二分查找">二分查找</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> a[<span class="hljs-number">12</span>]=&#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">7</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">15</span>,<span class="hljs-number">16</span>&#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=<span class="hljs-number">12</span>;<br>    <span class="hljs-keyword">while</span>(l&lt;r)<br>    &#123;<br>        <span class="hljs-type">int</span> mid=l+(r-l)/<span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span>(a[mid]&gt;=x)r=mid;<br>        <span class="hljs-keyword">else</span> l=mid<span class="hljs-number">+1</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(a[l]==x)<span class="hljs-keyword">return</span> l;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cout&lt;&lt;a[<span class="hljs-number">0</span>]&lt;&lt;<span class="hljs-string">&#x27; &#x27;</span>&lt;&lt;<span class="hljs-built_in">find</span>(<span class="hljs-number">7</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>查找一个没有重复数字的数列时l=0,r=11,l&lt;=r即可</p>
-<h3 id="回溯算法">回溯算法</h3>
-<p>frame</p>
+<h3 id="搜索">搜索</h3>
+<h4 id="深度优先搜索-DFS"><strong>深度优先搜索(DFS):</strong></h4>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs scss">void <span class="hljs-built_in">dfs</span>(int k)<span class="hljs-comment">//k means the times of recursion or the which blank to fill in</span><br>&#123;<br>    <span class="hljs-built_in">if</span>(all blanks are completed)<br>    &#123;<br>        answer<br>        return;<br>    &#125;<br>    <span class="hljs-built_in">for</span>(enumeration)<br>    &#123;<br>        <span class="hljs-built_in">if</span>(legal)<br>        &#123;<br>            record<br>            <span class="hljs-built_in">dfs</span>(k+<span class="hljs-number">1</span>);<br>            delete<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>示例(洛谷P2329)</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-meta">#include &lt;bits/stdc++.h&gt;</span><br><span class="hljs-keyword">using</span> namespace std;<br><span class="hljs-type">int</span> nowtime=<span class="hljs-number">0</span>,maxtime,num[<span class="hljs-number">4</span>],a[<span class="hljs-number">4</span>][<span class="hljs-number">22</span>]=&#123;<span class="hljs-number">0</span>&#125;,<span class="hljs-keyword">all</span>,sum,ans=<span class="hljs-number">0</span>;<br><span class="hljs-type">void</span> dfs(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> i,<span class="hljs-type">int</span> s)<br>&#123;<br>    <span class="hljs-keyword">if</span>(x&gt;=num[i<span class="hljs-number">-1</span>])<br>    &#123;<br>        maxtime=max(maxtime,nowtime);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(nowtime+a[i<span class="hljs-number">-1</span>][x]&lt;=<span class="hljs-keyword">all</span>/<span class="hljs-number">2</span>)<br>    &#123;<br>        nowtime+=a[i<span class="hljs-number">-1</span>][x];<br>        dfs(x+<span class="hljs-number">1</span>,i,s);<br>        nowtime-=a[i<span class="hljs-number">-1</span>][x];<br>    &#125;<br>    dfs(x+<span class="hljs-number">1</span>,i,s);<br>&#125;<br><span class="hljs-type">int</span> main()<br>&#123;<br>    //p2329<br>    cin&gt;&gt;num[<span class="hljs-number">0</span>]&gt;&gt;num[<span class="hljs-number">1</span>]&gt;&gt;num[<span class="hljs-number">2</span>]&gt;&gt;num[<span class="hljs-number">3</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">4</span>;++i)<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;num[i<span class="hljs-number">-1</span>];++j)cin&gt;&gt;a[i<span class="hljs-number">-1</span>][j];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">4</span>;++i)<br>    &#123;<br>        <span class="hljs-keyword">all</span>=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k&lt;num[i<span class="hljs-number">-1</span>];++k)<span class="hljs-keyword">all</span>+=a[i<span class="hljs-number">-1</span>][k];<br>        sum=<span class="hljs-number">0</span>;<br>        maxtime=<span class="hljs-number">0</span>;<br>        nowtime=<span class="hljs-number">0</span>;<br>        dfs(<span class="hljs-number">0</span>,i,<span class="hljs-keyword">all</span>);<br>        ans+=<span class="hljs-keyword">all</span>-maxtime;<br>    &#125;<br>    cout&lt;&lt;ans;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="广度优先搜索-BFS"><strong>广度优先搜索(BFS):</strong></h4>
+<p>深度优先搜索会优先考虑搜索的深度,不断递归找到答案,不找到不会回头,不适合解答树稀疏的情况,所以引入BFS.</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs arcade">Q.<span class="hljs-built_in">push</span>(Initial state);<br><span class="hljs-keyword">while</span>(!Q.empty())<br>&#123;<br>	State u =Q.<span class="hljs-built_in">front</span>();<span class="hljs-comment">//取出队首</span><br>	Q.<span class="hljs-built_in">pop</span>();<span class="hljs-comment">//出队</span><br>	<span class="hljs-keyword">for</span>(emurate) <span class="hljs-comment">//找出u的所有可达状态v</span><br>		<span class="hljs-keyword">if</span>(legal) <br>		Q.<span class="hljs-built_in">push</span>(v); <span class="hljs-comment">//入队</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="比较">比较</h4>
+<h5 id="搜索策略：">搜索策略：</h5>
+<p>BFS：逐层搜索，从起始节点开始，依次访问每一层的节点，直到找到目标节点或访问完所有节点。BFS 使用队列（FIFO）来记录待访问的节点。<br>
+DFS：深入到图的深处，直到无法继续为止，然后回溯并探索其他路径。DFS 使用栈（LIFO）或递归来实现。</p>
+<h5 id="适用场景：">适用场景：</h5>
+<p>BFS：最短路径问题,层次遍历,最小步骤问题<br>
+DFS：深度探索问题,连通性检测,组合、排列问题</p>
+<h5 id="实现难度：">实现难度：</h5>
+<p>BFS 通常需要显式维护一个队列，并且由于它的逐层特性，往往需要更多的内存来存储每一层的节点。<br>
+DFS 可以通过递归或显式维护一个栈来实现，递归实现时代码相对简洁，但可能会遇到递归深度过大的问题。</p>
+<h5 id="互换">互换</h5>
+<p>部分问题可以互换使用：<br>
+对于某些问题，比如遍历整个图、检测是否存在路径、寻找所有连通分量等，BFS 和 DFS 都可以解决。这些情况下，两者可以互换使用。<br>
+不适合互换使用的情况：<br>
+最短路径问题：对于无权图中的最短路径问题，BFS 是最佳选择，因为它按层次逐步扩展，保证了最早到达目标节点的路径是最短的。而 DFS 会先深入探索一条路径，如果这条路径不是最短的，DFS 可能不会在最短的时间内找到最短路径。<br>
+迭代深度限制：如果问题涉及非常深的递归（如非常深的树或图），使用 DFS 可能会导致栈溢出，BFS 可能会更好处理。</p>
 
                 
               </div>
@@ -407,7 +428,7 @@ memset根据字节来初始化数组,将value二进制化后填入数组.比如v
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>August 5, 2024</div>
+          <div>August 8, 2024</div>
         </div>
       
       
@@ -594,7 +615,7 @@ memset根据字节来初始化数组,将value二进制化后填入数组.比如v
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>August 5, 2024</div>
+          <div>August 8, 2024</div>
         </div>
       
       
