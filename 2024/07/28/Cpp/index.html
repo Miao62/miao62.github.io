@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
 <meta property="article:published_time" content="2024-07-28T11:13:03.151Z">
-<meta property="article:modified_time" content="2024-08-08T02:00:14.661Z">
+<meta property="article:modified_time" content="2024-08-11T00:22:10.902Z">
 <meta property="article:author" content="Miao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          2.6k words
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
         
-          16 mins
+          22 mins
         
       </span>
     
@@ -332,16 +332,9 @@ memset根据字节来初始化数组,将value二进制化后填入数组.比如v
 <td>-1</td>
 <td>0x80808080</td>
 </tr>
-<tr>
-<td>INT_MAX是0x7FFFFFFF,INT_MIN为0x80000000</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<p>INT_MAX是0x7FFFFFFF,INT_MIN为0x80000000</p>
 <p>常见的数值类型size(char[]有最后的\0):<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408031505404.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>如果你想赋值为固定值,比如127,可以用<code>memset(array,127,1); fill函数也能实现这个功能:</code>std::fill(arr, arr + size, value);``</p>
 <h3 id="二分查找">二分查找</h3>
@@ -355,6 +348,9 @@ memset根据字节来初始化数组,将value二进制化后填入数组.比如v
 <h4 id="广度优先搜索-BFS"><strong>广度优先搜索(BFS):</strong></h4>
 <p>深度优先搜索会优先考虑搜索的深度,不断递归找到答案,不找到不会回头,不适合解答树稀疏的情况,所以引入BFS.</p>
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs arcade">Q.<span class="hljs-built_in">push</span>(Initial state);<br><span class="hljs-keyword">while</span>(!Q.empty())<br>&#123;<br>	State u =Q.<span class="hljs-built_in">front</span>();<span class="hljs-comment">//取出队首</span><br>	Q.<span class="hljs-built_in">pop</span>();<span class="hljs-comment">//出队</span><br>	<span class="hljs-keyword">for</span>(emurate) <span class="hljs-comment">//找出u的所有可达状态v</span><br>		<span class="hljs-keyword">if</span>(legal) <br>		Q.<span class="hljs-built_in">push</span>(v); <span class="hljs-comment">//入队</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>贴两道题用于复习:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">coord</span>&#123;<br>    <span class="hljs-type">int</span> x,y;<br>&#125;;<br><span class="hljs-type">int</span> walk[<span class="hljs-number">8</span>][<span class="hljs-number">2</span>]=&#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125;,&#123;<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>&#125;,&#123;<span class="hljs-number">1</span>,<span class="hljs-number">-2</span>&#125;,&#123;<span class="hljs-number">-1</span>,<span class="hljs-number">-2</span>&#125;,&#123;<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-number">2</span>,<span class="hljs-number">-1</span>&#125;,&#123;<span class="hljs-number">-2</span>,<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-number">-2</span>,<span class="hljs-number">-1</span>&#125;&#125;;<br><span class="hljs-type">int</span> ans[<span class="hljs-number">410</span>][<span class="hljs-number">410</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//p1443</span><br>    queue&lt;coord&gt; Q;<br>    <span class="hljs-built_in">memset</span>(ans,<span class="hljs-number">-1</span>,<span class="hljs-built_in">sizeof</span>(ans));<br>    <span class="hljs-type">int</span> n,m,a,b;<br>    cin&gt;&gt;n&gt;&gt;m&gt;&gt;a&gt;&gt;b;<br>    coord tmp=&#123;a,b&#125;;<br>    ans[a][b]=<span class="hljs-number">0</span>;<br>    Q.<span class="hljs-built_in">push</span>(tmp);<br>    <span class="hljs-keyword">while</span>(!Q.<span class="hljs-built_in">empty</span>())<br>    &#123;<br>	    coord u =Q.<span class="hljs-built_in">front</span>();<br>        <span class="hljs-type">int</span> j=u.x,k=u.y;<br>	    Q.<span class="hljs-built_in">pop</span>();<br>	    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;++i)<br>        &#123;<br>            <span class="hljs-type">int</span> ux=j+walk[i][<span class="hljs-number">0</span>],uy=k+walk[i][<span class="hljs-number">1</span>];<br>            <span class="hljs-type">int</span> d=ans[j][k];<br>		    <span class="hljs-keyword">if</span>(ux&lt;<span class="hljs-number">1</span> <span class="hljs-keyword">or</span> ux&gt;n <span class="hljs-keyword">or</span> uy&lt;<span class="hljs-number">1</span> <span class="hljs-keyword">or</span> uy&gt;m <span class="hljs-keyword">or</span> ans[ux][uy]!=<span class="hljs-number">-1</span>)<span class="hljs-keyword">continue</span>;<br>            ans[ux][uy]=d<span class="hljs-number">+1</span>;<br>            tmp=&#123;ux,uy&#125;;<br>		    Q.<span class="hljs-built_in">push</span>(tmp);<br>        &#125;        <br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i,<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;&quot;</span>))<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j)<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%-5d&quot;</span>,ans[i][j]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs excel">#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>struct node&#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">index</span>,<span class="hljs-built_in">floor</span>,<span class="hljs-built_in">time</span>=<span class="hljs-number">0</span>;<br>&#125;p[<span class="hljs-number">220</span>];<br><span class="hljs-built_in">int</span> main()<br>&#123;<br>    //<span class="hljs-symbol">p1135</span><br>    queue&lt;node&gt; Q;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span>,a,b;<br>    cin&gt;&gt;<span class="hljs-built_in">n</span>&gt;&gt;a&gt;&gt;b;<br>    a--,b--;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;++i)<br>    &#123;<br>        cin&gt;&gt;p[i].<span class="hljs-built_in">floor</span>;<br>        p[i].<span class="hljs-built_in">index</span>=i;<br>    &#125;<br>    p[a].<span class="hljs-built_in">time</span>=<span class="hljs-number">1</span>;<br>    Q.push(&#123;a,p[a].<span class="hljs-built_in">floor</span>,<span class="hljs-number">1</span>&#125;);<br>    node u;<br>    while(!Q.empty())<br>    &#123;<br>	    u=Q.front();<br>	    Q.pop();<br>        for(<span class="hljs-built_in">int</span> i=-<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">1</span>;i+=<span class="hljs-number">2</span>)<br>        &#123;<br>            <span class="hljs-built_in">int</span> <span class="hljs-built_in">now</span>=p[u.index].<span class="hljs-built_in">floor</span>*i+u.index;<br>            <span class="hljs-built_in">if</span>(<span class="hljs-built_in">now</span>&gt;=<span class="hljs-number">0</span> <span class="hljs-built_in">and</span> <span class="hljs-built_in">now</span>&lt;<span class="hljs-built_in">n</span> <span class="hljs-built_in">and</span> p[<span class="hljs-built_in">now</span>].<span class="hljs-built_in">time</span>==<span class="hljs-number">0</span>)<br>            &#123;<br>                p[<span class="hljs-built_in">now</span>].<span class="hljs-built_in">time</span>=u.time+<span class="hljs-number">1</span>;<br>                Q.push(&#123;<span class="hljs-built_in">now</span>,p[<span class="hljs-built_in">now</span>].<span class="hljs-built_in">floor</span>,p[<span class="hljs-built_in">now</span>].<span class="hljs-built_in">time</span>&#125;);<br>            &#125;<br>        &#125;<br>	    <span class="hljs-built_in">if</span>(u.index==b)break;      <br>    &#125;<br>    <span class="hljs-built_in">if</span>(p[b].<span class="hljs-built_in">time</span>&gt;=<span class="hljs-number">1</span>)cout&lt;&lt;p[b].<span class="hljs-built_in">time</span>-<span class="hljs-number">1</span>;<br>    else cout&lt;&lt;-<span class="hljs-number">1</span>;<br>    return <span class="hljs-number">0</span>;<br>&#125;  <br></code></pre></td></tr></table></figure>
 <h4 id="比较">比较</h4>
 <h5 id="搜索策略：">搜索策略：</h5>
 <p>BFS：逐层搜索，从起始节点开始，依次访问每一层的节点，直到找到目标节点或访问完所有节点。BFS 使用队列（FIFO）来记录待访问的节点。<br>
@@ -365,12 +361,51 @@ DFS：深度探索问题,连通性检测,组合、排列问题</p>
 <h5 id="实现难度：">实现难度：</h5>
 <p>BFS 通常需要显式维护一个队列，并且由于它的逐层特性，往往需要更多的内存来存储每一层的节点。<br>
 DFS 可以通过递归或显式维护一个栈来实现，递归实现时代码相对简洁，但可能会遇到递归深度过大的问题。</p>
-<h5 id="互换">互换</h5>
-<p>部分问题可以互换使用：<br>
-对于某些问题，比如遍历整个图、检测是否存在路径、寻找所有连通分量等，BFS 和 DFS 都可以解决。这些情况下，两者可以互换使用。<br>
-不适合互换使用的情况：<br>
-最短路径问题：对于无权图中的最短路径问题，BFS 是最佳选择，因为它按层次逐步扩展，保证了最早到达目标节点的路径是最短的。而 DFS 会先深入探索一条路径，如果这条路径不是最短的，DFS 可能不会在最短的时间内找到最短路径。<br>
-迭代深度限制：如果问题涉及非常深的递归（如非常深的树或图），使用 DFS 可能会导致栈溢出，BFS 可能会更好处理。</p>
+<h3 id="STL-vector数组">STL: vector数组</h3>
+<p><code>vector&lt;int&gt; v(N,i)</code><br>
+建立可变长度数组v,元素类型为int(也可以是其他的),可变数组最开始为N个元素,并初始化为0. N,i均可以省略,默认值为0.<br>
+<code>v.push_back(a)</code><br>
+就像队列一样插入元素到末尾.<br>
+<code>v.size()</code> <code>v.resize(n,m)</code><br>
+前者返回数组长度,后者resize为n的长度,多删少补,补为m,m可省略.<br>
+<code>vector&lt;int&gt;::iterator it</code>定义一个迭代器called it,就像指针一样(不能画等号),<code>*it</code>取元素.一般来说,迭代器用得较少,因为数组元素直接用v[i]表示即可.<br>
+<code>v.begin()</code> <code>v.end()</code>返回指针,和队列一样,前者首元素,后者末尾元素+1.</p>
+<p>需要注意,vector这种STL中的数组不能用<code>printf()</code>这种c语言的函数<br>
+vector数组可以建立二维的<br>
+<code>vector&lt;vector&lt;int&gt;&gt; v;</code><br>
+洛谷P3613</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> m,n,tmp,i,j,k;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//p3613</span><br>    cin&gt;&gt;m&gt;&gt;n;<br>    vector &lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">v</span>(m<span class="hljs-number">+1</span>);<br>    <span class="hljs-keyword">do</span><br>    &#123;<br>        cin&gt;&gt; tmp;<br>        <span class="hljs-keyword">if</span>(tmp==<span class="hljs-number">1</span>)<br>        &#123;<br>            cin&gt;&gt;i&gt;&gt;j&gt;&gt;k;<br>            <span class="hljs-keyword">if</span>(v[i].<span class="hljs-built_in">size</span>()&lt;j<span class="hljs-number">+1</span>)v[i].<span class="hljs-built_in">resize</span>(j<span class="hljs-number">+1</span>);<br>            v[i][j]=k;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <br>        &#123;<br>            cin&gt;&gt;i&gt;&gt;j;<br>            cout&lt;&lt;v[i][j]&lt;&lt;endl;<br>        &#125;<br>    &#125;<span class="hljs-keyword">while</span>(--n);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="栈">栈</h3>
+<p><strong>栈:后进先出</strong><br>
+<strong>队列:后进后出</strong><br>
+不追求速度的情况下,不用自己手写栈,而是用STL提供的stack<br>
+<code>stack&lt;int&gt; s;</code><br>
+<code>s.push(a);</code><br>
+<code>s.pop();</code><br>
+<code>s.top()</code>查询s栈顶元素,如果没有报错<br>
+<code>s.size()</code><br>
+<code>s.empty()</code>空返回1,否则返回0</p>
+<p>栈的应用较为浅显:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//p1449</span><br>    <span class="hljs-type">char</span> s;<br>    <span class="hljs-type">int</span> num=<span class="hljs-number">0</span>;<br>    stack&lt;<span class="hljs-type">int</span> &gt; v;<br>    <span class="hljs-keyword">do</span><br>    &#123;<br>        s=<span class="hljs-built_in">getchar</span>();<br>        <span class="hljs-keyword">if</span>(s&gt;=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-keyword">and</span> s&lt;=<span class="hljs-string">&#x27;9&#x27;</span>)num=num*<span class="hljs-number">10</span>+s-<span class="hljs-string">&#x27;0&#x27;</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s==<span class="hljs-string">&#x27;.&#x27;</span>)<br>        &#123;<br>            v.<span class="hljs-built_in">push</span>(num);<br>            num=<span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s!=<span class="hljs-string">&#x27;@&#x27;</span>)<br>        &#123;<br>            <span class="hljs-type">int</span> x=v.<span class="hljs-built_in">top</span>();<br>            v.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-type">int</span> y=v.<span class="hljs-built_in">top</span>();<br>            v.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">switch</span>(s)<br>            &#123;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;+&#x27;</span>:v.<span class="hljs-built_in">push</span>(x+y);<span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;-&#x27;</span>:v.<span class="hljs-built_in">push</span>(y-x);<span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;*&#x27;</span>:v.<span class="hljs-built_in">push</span>(x*y);<span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;/&#x27;</span>:v.<span class="hljs-built_in">push</span>(y/x);<span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">while</span> (s!=<span class="hljs-string">&#x27;@&#x27;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,v.<span class="hljs-built_in">top</span>());<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="队列">队列</h3>
+<p><code>queue&lt;int&gt; s;</code><br>
+<code>s.push(a);</code><br>
+<code>s.pop();</code><br>
+<code>s.front()  s.back()</code><br>
+<code>s.size()</code><br>
+<code>s.empty()</code>空返回1,否则返回0</p>
+<h3 id="链表">链表</h3>
+<p><code>list&lt;int&gt; a</code><br>
+<code>a.size()</code><br>
+<code>a.begin() a.end()</code>end指针就是末尾,不用+1<br>
+<code>a.push_front(x) a.push_back(x)</code><br>
+<code>a.insert(it,x)</code>在迭代器it前插入x<br>
+<code>a.erase(it)</code>删除迭代器所在元素<br>
+<code>a.pop_front(x) a.pop_back(x)</code><br>
+<code>a.ins_back(x,y);</code>将y插入在x后面<br>
+<code>a.ins_front(x,y);</code>前面<br>
+<code>a.ask_back(x)</code>查询x后的数<br>
+<code>a.ask_front(x)</code>前的数</p>
 
                 
               </div>
@@ -428,7 +463,7 @@ DFS 可以通过递归或显式维护一个栈来实现，递归实现时代码�
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>August 8, 2024</div>
+          <div>August 11, 2024</div>
         </div>
       
       
@@ -615,7 +650,7 @@ DFS 可以通过递归或显式维护一个栈来实现，递归实现时代码�
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>August 8, 2024</div>
+          <div>August 11, 2024</div>
         </div>
       
       
