@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290909539.jpg">
 <meta property="article:published_time" content="2026-03-06T06:54:05.476Z">
-<meta property="article:modified_time" content="2026-03-06T09:15:59.915Z">
+<meta property="article:modified_time" content="2026-03-06T09:21:29.114Z">
 <meta property="article:author" content="Miao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290909539.jpg">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          1.3k words
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          13 mins
+          11 mins
         
       </span>
     
@@ -298,8 +298,8 @@
 <li>高昂的IV： 支付天价的保险费。</li>
 <li>恐怖的Theta： 期权每一秒都在融化。</li>
 </ol>
-<p>而专业策略的意义是反转这个游戏。我们不当赌徒而利用市场的不确定性来开设赌场。我们此时设计的这套策略，其核心思想是：我们不赌财报事件本身，我们只套利市场在财报前必然会产生的预期。</p>
-<p>具体来说，我们套利的是三件事：</p>
+<p>而专业策略的意义是反转这个游戏。我们不当赌徒而利用市场的不确定性来开设赌场。我们此时设计的这套策略，其核心思想是：不赌财报事件本身，只套利市场在财报前必然会产生的预期。</p>
+<p>具体来说，套利的是三件事：</p>
 <ol>
 <li>Vega 收益： 在静默期内，市场对不确定性的恐慌会必然推高IV。</li>
 <li>Delta 收益： 在多空分歧的标的上，乐观情绪大概率会带来财报前的股价攀升。</li>
@@ -307,7 +307,7 @@
 </ol>
 <h3 id="二、-一个月内的剧本">二、 一个月内的剧本</h3>
 <p>这是一个高资本效率、Theta中性的Diagonal Debit Spread。</p>
-<h5 id="步骤一：选股（这是策略的灵魂）">步骤一：选股（这是策略的灵魂）</h5>
+<h5 id="步骤一：选股">步骤一：选股</h5>
 <p>不能在市场极度看涨的标的上用这套策略。我们必须挑选基本面有瑕疵，但市场情绪分歧的标的（例如2025Q3财报前的Meta, 目前的SNPS）。</p>
 <p>选股标准必须同时满足三个条件：</p>
 <ol>
@@ -326,7 +326,7 @@
 在这两个星期内挂单买入, 技术指标可以看MA60和布林线下轨。</p>
 </li>
 <li>
-<p>短腿： 买入长腿后立刻卖出一张财报前1-2周到期的OTM Call, 尽量对冲掉长腿的Theta。我的买法较为保守, 一般选择Delta &lt; 0.2的,只要对冲Theta就足够了。</p>
+<p>短腿： 买入长腿后立刻卖出一张财报前1-2周到期的OTM Call, 尽量对冲掉长腿的Theta。</p>
 </li>
 <li>
 <p>最终仓位：(以SNPS为例）<br>
@@ -335,7 +335,7 @@
 </li>
 </ol>
 <p>• 净Delta: +0.40 (是一个多头，吃攀升)<br>
-• 净Vega: +0.42 (是一个IV多头，吃IV拉升)<br>
+• 净Vega: +0.42 (是一个多头，吃IV拉升)<br>
 • 净Theta: +0.04 (每天在收“工资”，时间是朋友, 或者是不痛不痒的敌人)</p>
 <h5 id="步骤三：按纪律退出">步骤三：按纪律退出</h5>
 <p>这个策略有两个退出点，绝不持仓赌财报。</p>
@@ -359,15 +359,11 @@
 <p>风险二：宏观风险<br>
 我们的的仓位是一个高杠杆多头。只能在牛市或震荡市中使用。如果在静默期内大盘因为坏CPI这种消息触发黑天鹅开始下跌，Delta亏的钱可能比IV收入和Theta收入高得多。</p>
 </li>
+<li>
+<p>风险三：Delta攀升失败<br>
+我们假设市场情绪乐观占优=财报前尤其是一星期内股价会攀升。现实有可能是市场可能摆烂到底。如果股价漂移下跌，我们有可能拿不到Delta的利润。</p>
+</li>
 </ol>
-<p>熊市可以采用镜像策略：<br>
-这个策略可以完美反转。在熊市中挑选悲观占优的标的，构建Put Diagonal仓位（-Delta, +Vega, +Theta）。此时，我们最大的风险就变成了轧空, 与之对应的是Call的黑天鹅。</p>
-<ol start="3">
-<li>风险三：Delta攀升失败<br>
-我们假设市场情绪乐观占优=财报前尤其是一星期内股价会攀升。现实有可能是市场可能摆烂到底。如果股价漂移下跌，我们有可能拿不到Delta的利润。</li>
-</ol>
-<h3 id="这个策略做了什么">这个策略做了什么?</h3>
-<p>我们没有找到稳赚不赔的公式，只是找到了一个回报风险比高的系统。通过它，确保了我们承担的每一份风险，都能最大化地转化成利润，没有风险是白承担的。</p>
 
                 
               </div>
