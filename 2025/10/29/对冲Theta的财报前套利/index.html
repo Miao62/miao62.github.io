@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。 一、 核心哲学：从赌徒到赌场 对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。 这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战：  高昂的IV： 支付天价的保险费。 恐怖的Theta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对冲Theta的财报前套利">
+<meta property="og:url" content="https://miao62.github.io/2025/10/29/%E5%AF%B9%E5%86%B2Theta%E7%9A%84%E8%B4%A2%E6%8A%A5%E5%89%8D%E5%A5%97%E5%88%A9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。 一、 核心哲学：从赌徒到赌场 对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。 这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战：  高昂的IV： 支付天价的保险费。 恐怖的Theta">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290909539.jpg">
+<meta property="article:published_time" content="2025-10-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-06T09:24:34.366Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290909539.jpg">
+  
+  
+  
+  <title>对冲Theta的财报前套利 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao62.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="对冲Theta的财报前套利"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-29 00:00" pubdate>
+          October 29, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">对冲Theta的财报前套利</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。</p>
+<h3 id="一、-核心哲学：从赌徒到赌场">一、 核心哲学：从赌徒到赌场</h3>
+<p>对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。</p>
+<p>这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战：</p>
+<ol>
+<li>高昂的IV： 支付天价的保险费。</li>
+<li>恐怖的Theta： 期权每一秒都在融化。</li>
+</ol>
+<p>而专业策略的意义是反转这个游戏。我们不当赌徒而利用市场的不确定性来开设赌场。我们此时设计的这套策略，其核心思想是：不赌财报事件本身，只套利市场在财报前必然会产生的预期。</p>
+<p>具体来说，套利的是三件事：</p>
+<ol>
+<li>Vega 收益： 在静默期内，市场对不确定性的恐慌会必然推高IV。</li>
+<li>Delta 收益： 在多空分歧的标的上，乐观情绪大概率会带来财报前的股价攀升。</li>
+<li>Theta 对冲:   在静默期内, 由于基本面利好利空消息的封闭, 我们可以采用卖出短腿OTM期权的形式来对冲掉Theta, 一般偏向保守, 卖Delta0.2左右的短腿。</li>
+</ol>
+<h3 id="二、-一个月内的剧本">二、 一个月内的剧本</h3>
+<p>这是一个高资本效率、Theta中性的Diagonal Debit Spread。</p>
+<h5 id="步骤一：选股">步骤一：选股</h5>
+<p>不能在市场极度看涨的标的上用这套策略。我们必须挑选基本面有瑕疵，但市场情绪分歧的标的（例如2025Q3财报前的Meta, 目前的SNPS）。</p>
+<p>选股标准必须同时满足三个条件：</p>
+<ol>
+<li>基本面有瑕疵： 比如SNPS的IP业务暴雷和Meta的AI支出不确定性。这保证了空头的力量，为市场注入了不确定性（IV的燃料）。</li>
+<li>乐观情绪占优： 比如市场相信Ansys收购的长期故事, 相信Meta的超级稳健现金流。这保证了多头的存在，为股价提供了攀升的动力（Delta的燃料）。</li>
+<li>IV期限结构： 由于上述两点，市场必然会对短期财报极度恐慌，导致短期IV和Theta高得离谱；而对长期的IV则相对便宜。</li>
+</ol>
+<h5 id="步骤二：建仓">步骤二：建仓</h5>
+<ol>
+<li>
+<p>入场时机： 财报前 2-4 周。</p>
+</li>
+<li>
+<p>长腿： 买入一张3-6个月到期的ATM Call。<br>
+为什么是3-6个月？ 为了高资本效率和小资金门槛。两年的LEAPS太过昂贵,而且会大幅降低这个策略的回报率。3-6个月的期权价格适中（$3,700），它拥有极高的Vega和Gamma, 这是50%-100%高回报率的发动机。<br>
+在这两个星期内挂单买入, 技术指标可以看MA60和布林线下轨。</p>
+</li>
+<li>
+<p>短腿： 买入长腿后立刻卖出一张财报前1-2周到期的OTM Call, 尽量对冲掉长腿的Theta。</p>
+</li>
+<li>
+<p>最终仓位：(以SNPS为例）<br>
+• 长腿 (SNPS 260220 400C)： Delta: +0.53, Vega: +0.44, Theta: -0.22<br>
+• 短腿 (SNPS 251128 430C)： Delta: -0.13, Vega: -0.02, Theta: +0.26</p>
+</li>
+</ol>
+<p>• 净Delta: +0.40 (是一个多头，吃攀升)<br>
+• 净Vega: +0.42 (是一个多头，吃IV拉升)<br>
+• 净Theta: +0.04 (每天在收“工资”，时间是朋友, 或者是不痛不痒的敌人)</p>
+<h5 id="步骤三：按纪律退出">步骤三：按纪律退出</h5>
+<p>这个策略有两个退出点，绝不持仓赌财报。</p>
+<ol>
+<li>
+<p>第一阶段（财报前1-2周）： 我们的短腿到期。在震荡的剧本中，股价可能缓慢攀升但未涨过, 短腿无价值过期。情况好的情况下我们就白嫖了这份权利金，它100%变成了利润。</p>
+</li>
+<li>
+<p>第二阶段（财报前0-1天）： 此时只剩裸露的长腿。市场情绪和IV都达到了亢奋的顶峰。此时我们卖出长腿，把这份高价保险和赌博的机会，留给那些真正的赌徒。</p>
+</li>
+</ol>
+<h3 id="三、-策略风险与胜率的边界">三、 策略风险与胜率的边界</h3>
+<p>这个策略绝对不是必赢的, 只是做了一个精明的风险交换。我们消除了Theta这个风险,<br>
+主动承担了三个风险，每天对冲掉的Theta以及Delta, Vega敞口，就是去承担这些风险的报酬。</p>
+<ol>
+<li>
+<p>风险一：Theta对冲失败<br>
+如果选的标的多空分歧不够大，短期IV不够高，卖的短腿可能无法覆盖长腿的负值Theta。此时我们变成了每天都在流血的普通策略。此时可以根据风险偏好和Theta承受能力来微调这个策略</p>
+</li>
+<li>
+<p>风险二：宏观风险<br>
+我们的的仓位是一个高杠杆多头。只能在牛市或震荡市中使用。如果在静默期内大盘因为坏CPI这种消息触发黑天鹅开始下跌，Delta亏的钱可能比IV收入和Theta收入高得多。</p>
+</li>
+<li>
+<p>风险三：Delta攀升失败<br>
+我们假设市场情绪乐观占优=财报前尤其是一星期内股价会攀升。现实有可能是市场可能摆烂到底。如果股价漂移下跌，我们有可能拿不到Delta的利润。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>对冲Theta的财报前套利</div>
+      <div>https://miao62.github.io/2025/10/29/对冲Theta的财报前套利/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 29, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/17/%E6%BF%80%E8%BF%9B%E6%B6%A8%E8%B7%8C%20--%20LEAPS%E5%8D%95%E8%85%BF%E5%92%8C3-6%E6%9C%88%E4%BB%B7%E5%B7%AE/" title="LEAPS单腿与月级别价差">
+                        <span class="hidden-mobile">LEAPS单腿与月级别价差</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

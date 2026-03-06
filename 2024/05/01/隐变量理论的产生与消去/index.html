@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引言 隐变量理论在量子力学的发展中扮演了一个颇具争议但却非常重要的角色。隐变量理论是爱因斯坦、约翰·贝尔等人为了质疑当时的量子力学理论如哥本哈根诠释等的完备性提出的理论。它试图通过引入未被观察到的变量，解释量子力学中的随机性和不确定性。他们相信，量子力学是符合定域性（locality）和实在性(realism)的。 定域性、实在性与EPR佯谬 1905年爱因斯坦提出的狭义相对论撼动了许多人的世界观">
+<meta property="og:type" content="article">
+<meta property="og:title" content="隐变量理论的产生与消去">
+<meta property="og:url" content="https://miao62.github.io/2024/05/01/%E9%9A%90%E5%8F%98%E9%87%8F%E7%90%86%E8%AE%BA%E7%9A%84%E4%BA%A7%E7%94%9F%E4%B8%8E%E6%B6%88%E5%8E%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="引言 隐变量理论在量子力学的发展中扮演了一个颇具争议但却非常重要的角色。隐变量理论是爱因斯坦、约翰·贝尔等人为了质疑当时的量子力学理论如哥本哈根诠释等的完备性提出的理论。它试图通过引入未被观察到的变量，解释量子力学中的随机性和不确定性。他们相信，量子力学是符合定域性（locality）和实在性(realism)的。 定域性、实在性与EPR佯谬 1905年爱因斯坦提出的狭义相对论撼动了许多人的世界观">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407282318154.jpg">
+<meta property="article:published_time" content="2024-04-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-06T09:27:38.245Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407282318154.jpg">
+  
+  
+  
+  <title>隐变量理论的产生与消去 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao62.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="隐变量理论的产生与消去"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-01 00:00" pubdate>
+          May 1, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">隐变量理论的产生与消去</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="引言">引言</h4>
+<p>隐变量理论在量子力学的发展中扮演了一个颇具争议但却非常重要的角色。隐变量理论是爱因斯坦、约翰·贝尔等人为了质疑当时的量子力学理论如哥本哈根诠释等的完备性提出的理论。它试图通过引入未被观察到的变量，解释量子力学中的随机性和不确定性。他们相信，量子力学是符合<strong>定域性</strong>（locality）和<strong>实在性</strong>(realism)的。</p>
+<h4 id="定域性、实在性与EPR佯谬">定域性、实在性与EPR佯谬</h4>
+<p>1905年爱因斯坦提出的狭义相对论撼动了许多人的世界观，也成为了爱因斯坦之后理论的坚实基础。爱因斯坦的相对论严格维护了一个爱因斯坦坚信不疑的性质：<strong>定域性</strong>。定域性认为任何事物的传播速度都不能超越光速，否则将会违背<strong>因果论</strong>（如果信息可以超光速传播，那么用洛伦兹变换下的另一个参考系将会先看到传播的信息，然后事件才会发生，这无疑是矛盾的）。1927年，玻尔、海森堡等物理学家联合提出了著名的<strong>哥本哈根诠释</strong>，他们认为<strong>量子态</strong>是量子力学的关键特色，可以用<strong>波函数</strong>来描述，观测会导致波函数的坍缩，具体粒子只要不观测并不能描述。这和爱因斯坦坚信的<strong>实在性</strong>实在有了巨大的分歧。实在性是一个更偏向哲学的概念，物质就应该在哪里，和我的观测并没有关系，客观存在性应是物质独立于人的意识的特殊性质。<br>
+1935年，爱因斯坦、波多尔斯基和罗森发表了一篇论文，提出了著名的<strong>EPR佯谬</strong>。他们通过思想实验来质疑量子力学的完备性，尤其是针对量子纠缠现象。在空间中，发生量子纠缠的两个粒子无论相隔多远，其状态依然密切相关，科学家一旦测量了一个粒子的状态，另一个粒子的状态会立即确定，而且。这种超距效应带来了两种不同的解释：一个是两个粒子在测量的时候进行了超越光速的信息传播，对此爱因斯坦持坚决反对：你要想驳倒我，就先把相对论证伪再说，在相对论证伪之前，定域性是坚决不允许这种情况存在的。爱因斯坦更偏向第二个解释，他倾向于认为，量子力学是一个不完备的理论，缺少了一些隐含的变量，这些隐变量决定了粒子的状态，而不仅仅依赖于概率，这个隐在的关系就像一对手套放入两个抽屉一样，左手的出现可以立刻判断出剩下的是右手。这个理论就是隐变量理论。</p>
+<h4 id="隐变量理论与贝尔不等式">隐变量理论与贝尔不等式</h4>
+<p>约翰·贝尔是玻爱之争中爱因斯坦的忠实拥趸，他试图通过假设存在一些未被量子力学描述的隐变量来解释量子现象的确定性，就像手套方向的相关性一样。1964年，贝尔提出了贝尔不等式，提供了一种实际方法来检验隐变量理论是否正确。值得注意的是，贝尔不等式是在假设量子力学中实在性与定域性成立的条件下，对式子的推导，这也为后面实验的结果埋下了伏笔。</p>
+<h5 id="贝尔不等式的推导">贝尔不等式的推导</h5>
+<p>假设我们有一个角动量$L=0$的粒子衰减成为两个相同的$\frac{1}{2}$粒子A与B，根据角动量守恒，两个粒子的自旋方向必相反。现在Alice和Bob分别在足够远的位置对两个粒子的自旋方向进行测量，由于人所处的空间是三维空间，基于经典物理，会得到以下8种情况：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$A_x$</th>
+<th style="text-align:center">$A_y$</th>
+<th style="text-align:center">$A_z$</th>
+<th style="text-align:center">$B_x$</th>
+<th style="text-align:center">$B_y$</th>
+<th style="text-align:center">$B_z$</th>
+<th style="text-align:center">出现概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">$N_1$</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">$N_2$</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">$N_3$</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">$N_4$</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">$N_5$</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">$N_6$</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">$N_7$</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">$N_8$</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们定义$P_{xy}$为$A_x$和$B_y$相同的概率，其他同理，可以得到<br>
+$$P_{xy}=-N_1-N_2+N_3+N_4+N_5+N_6-N_7-N_8$$ $$P_{zy}=-N_1+N_2+N_3-N_4-N_5+N_6+N_7-N_8$$ $$P_{xz}=-N_1+N_2-N_3+N_4+N_5-N_6+N_7-N_8$$所以<br>
+$$|P_{xz}-P_{zy}|=2[(N_4+N_5)-(N_3+N_6)] \le 2(N_3+N_4+N_5+N_6)$$<br>
+根据概率的归一化原理，可以得到<br>
+$$N_1+N_2+N_3+N_4+N_5+N_6+N_7+N_8=1$$$$P_{xy}=2(N_1+N_2+N_3+N_4)-1$$<br>
+所以<br>
+$$|P_{xz}-P_{zy}| \le 1+P_{xy}$$</p>
+<p>当然，这个推导是最为简化但不完备的推导方法，这个推导将隐变量蕴含在了N~1~和N~2~到N~8~之中，不同的值代表着离散的隐变量$\lambda$的不同取值。然而，在实际情况中，隐变量$\lambda$不一定是离散的，也可能是一个连续函数，参考文献（2）有更为完备的证明方法。<br>
+不难看出，贝尔不等式的意义是理论对实验结果的限制情况。贝尔不等式指出，如果定域实在的隐变量理论成立，这个不等式应该总是满足，也侧面说明了现有形式的量子力学并不完备。因此，贝尔不等式成为了隐变量理论的支柱之一。</p>
+<h5 id="对贝尔不等式的检验">对贝尔不等式的检验</h5>
+<p>然而贝尔不等式貌似并没有使后面的科学家满意，在1972年，有人就做出了相应的检验实验：他们通过发射激光，让钙原子发射光子，测量偏振结果，发现结果竟然是不满足贝尔不等式的。1981至1982年，阿兰·阿斯佩、约翰·克劳瑟和安东·塞林格做了其基础上更为完备的实验，他们加上了随机选择探测方向的装置，补上了探测方向固定的漏洞，他们还加长了实验的距离，来进一步确定传播速度若存在则只能超过光速，从而彻底地宣布了贝尔不等式的不成立。他们也因此获得2022年的诺贝尔物理学奖。2015年的实验再次加长了实验宽度，改进了实验中测量仪器的精度，还是显示贝尔不等式是错误的。这些实验通过不同的方法和技术验证了量子力学的预测，明确地表明了贝尔不等式的违反，从而推翻了任何局域隐变量理论。</p>
+<h4 id="结论">结论</h4>
+<p>隐变量理论试图通过引入未被观察到的变量来解释量子力学中的随机性和不确定性。然而，贝尔不等式和随后的一系列实验表明，量子力学的非确定性和非定域性是其本质特征。尽管隐变量理论提供了一个试图解释量子现象的框架，但实验结果表明，玻尔的量子论更加符合、自然，也不得不使爱因斯坦为首的科学家们承认定域且实在的量子力学是不存在的。也许那个隐变量就像宇宙中占比多数但仍未了解的暗物质、暗能量一样还藏在更深的角落，也许，恐怕事实与玻尔和爱因斯坦争锋时常出现的那句话相反，<strong>上帝好像真的掷骰子</strong>。</p>
+<h4 id="参考资料">参考资料</h4>
+<ol>
+<li>张卫,马晓天.“隐变量理论”是特设性假说吗——兼论“可检验性”标准[J].长沙理工大学学报(社会科学版),2024,39(02):26-32.DOI:10.16573/j.cnki.1672-934x.2024.02.004.</li>
+<li>周江.量子非定域性与贝尔不等式[J].大学物理,2023,42(09):23-27.DOI:10.16854/j.cnki.1000-0712.220517.</li>
+<li>薛鹏.探索EPR佯谬和量子纠缠——2022年诺贝尔物理学奖[J].张江科技评论,2023(01):10-12.</li>
+<li>沈惠川.贝尔定理和贝尔不等式[J].自然杂志,1996(04):240-244.</li>
+</ol>
+<p>最终给分:91/100</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Assignments/" class="category-chain-item">Assignments</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>隐变量理论的产生与消去</div>
+      <div>https://miao62.github.io/2024/05/01/隐变量理论的产生与消去/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 1, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/01/%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A3/" title="物理实验报告 3">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">物理实验报告 3</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

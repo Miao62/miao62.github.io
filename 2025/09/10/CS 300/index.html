@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. Array and Methods Basic structure 12345public class Salary &#123;  public static void main(String[] args)&#123;	System.out.println(&quot;a&quot;+&quot;ccc&quot;);  &#125;&#125; Input import java.ut">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS300-Java">
+<meta property="og:url" content="https://miao62.github.io/2025/09/10/CS%20300/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. Array and Methods Basic structure 12345public class Salary &#123;  public static void main(String[] args)&#123;	System.out.println(&quot;a&quot;+&quot;ccc&quot;);  &#125;&#125; Input import java.ut">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
+<meta property="article:published_time" content="2025-09-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-06T09:26:07.318Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
+  
+  
+  
+  <title>CS300-Java - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao62.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CS300-Java"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-10 00:00" pubdate>
+          September 10, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CS300-Java</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>1. Array and Methods</h1>
+<h5 id="Basic-structure">Basic structure</h5>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Salary</span> &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] <span class="hljs-keyword">args</span></span>)</span>&#123;<br>	System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;a&quot;</span>+<span class="hljs-string">&quot;ccc&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="Input">Input</h5>
+<p><code>import java.util.Scanner;</code></p>
+<p>`Scanner scnr=new Scanner(<a target="_blank" rel="noopener" href="http://System.in">System.in</a>);</p>
+<p><code>scnr.nextInt();</code></p>
+<h5 id="Method-signature-errors">Method signature errors</h5>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs smali">int binarySearch(int[] arrayReference,<span class="hljs-built_in"> int </span>target) --- get value without<span class="hljs-built_in"> array </span>change<br>void sort(int[] arrayReference) --- change<span class="hljs-built_in"> array</span><br><span class="hljs-built_in"></span>double[] copyOf(double[] arrayReference,<span class="hljs-built_in"> int </span>newLength) --- copy array<br></code></pre></td></tr></table></figure>
+<h5 id="Perfect-Size-Arrays">Perfect Size Arrays</h5>
+<p><code>int[] highTemps={1,2,3}</code><br>
+Must initialize when declaration, used when size of array fixed<br>
+could be returned</p>
+<p>passing a array reference : could update the content of original<br>
+passing a primitive can’t</p>
+<p>toCharArrays(String);requires a perfect size<br>
+split() (instance method) split a String to Strings by defining separators</p>
+<h5 id="OverSize-Arrays">OverSize Arrays</h5>
+<p>elements used is less than or equal to the memory allocated<br>
+elements are located in 0 - size-1 ONLY (compact)</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">final</span> <span class="hljs-type">int</span> capacity=<span class="hljs-number">100</span>;<br><span class="hljs-type">int</span> size=<span class="hljs-number">0</span>;<br><span class="hljs-type">int</span>[] array= <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[capacity];<br></code></pre></td></tr></table></figure>
+<p>toString(requires int array and size);</p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509211848787.png" srcset="/img/loading.gif" lazyload alt=""><br>
+for arrays, use Array.equals(a,b);-&gt;true<br>
+for objects , equals are rewrite to compare the content rather than the reference.</p>
+<p>String pool: once find the same content, just point the previous<br>
+a way to prevent this: use new String(“a”);</p>
+<p>Integer Wrapper Pool: from -128 to 127</p>
+<p>Float, Double don’t have this</p>
+<h5 id="Java-util-package">Java.util package</h5>
+<h6 id="Tools">Tools</h6>
+<p>Arrays : sort, binarySearch, equals, toString<br>
+Objects : isNull()</p>
+<h6 id="Collections">Collections</h6>
+<p>List: ArrayList,LinkedList<br>
+Set<br>
+Map<br>
+Queue</p>
+<p>import java.util.ArrayList;<br>
+import java.util.Arrays;</p>
+<h1>2. Objects</h1>
+<h5 id="Java-variables">Java variables</h5>
+<p>primitive : int,double, char<br>
+reference : refer to an object</p>
+<p>Wrapper class object and String are <em><strong>immutable</strong></em><br>
+when we try to change like</p>
+ <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Integer s<span class="hljs-operator">=</span><span class="hljs-number">100</span><span class="hljs-comment">;</span><br><span class="hljs-attribute">s</span><span class="hljs-operator">=</span><span class="hljs-number">150</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<p>the reference will be changed and point a new object, previous -&gt; GC</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Integer a<span class="hljs-operator">=</span><span class="hljs-number">5</span><span class="hljs-comment">;</span><br>Integer b<span class="hljs-operator">=</span><span class="hljs-number">10</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<p>a==b – compares reference - false and seldom use<br>
+a &lt; b – compare value $\checkmark$<br>
+a==5 – $\checkmark$</p>
+<p>compare content – use equals() or compareTo();</p>
+<p>0 - equal<br>
+&lt;0 - a&lt;b;</p>
+<h5 id="Static-vs-Instance-Method">Static vs Instance Method</h5>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509221432453.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Wrapper-class-conversions">Wrapper class conversions</h5>
+<p>autoboxing: Integer s=50;<br>
+unboxing: s&gt;50; double t = 100-s;<br>
+s=s+1; – auto and un</p>
+<p>boxing on null -&gt; NullPointerException</p>
+<h5 id="Converting-to-primitives-and-string">Converting to primitives and string</h5>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Double s<span class="hljs-operator">=</span><span class="hljs-number">100.0</span><span class="hljs-comment">;</span><br>Integer a<span class="hljs-operator">=</span> <span class="hljs-number">50</span><span class="hljs-comment">;</span><br>String p<span class="hljs-operator">=</span><span class="hljs-string">&quot;1250&quot;</span><span class="hljs-comment">;</span><br>s.intValue()<span class="hljs-comment">; --- 100</span><br>a.doubleValue()<span class="hljs-comment">; --- 50.0</span><br>s.toString()<span class="hljs-comment">; --- &quot;100&quot;</span><br>Integer.toString(a)<span class="hljs-comment">; ---&quot;50&quot;</span><br>Integer.parseInt(p)<span class="hljs-comment">; ---&quot;1250&quot;</span><br>Double.parseDouble(p)<span class="hljs-comment">; ---&quot;1250.0&quot;</span><br>Integer.valueOf(p)<span class="hljs-comment">; ---&quot;1250&quot; but the Integer type</span><br></code></pre></td></tr></table></figure>
+<h5 id="ArrayList">ArrayList</h5>
+<p><code>import java.util.ArrayList; </code></p>
+<p><code>ArrayList&lt;Integer&gt; vals = new ArrayList&lt;Integer&gt;()</code></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">vals.<span class="hljs-keyword">add</span>(<span class="hljs-number">41</span>);<br>vals.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>); <span class="hljs-keyword">returns</span> <span class="hljs-keyword">index</span> <span class="hljs-number">0</span> element<br>vlas.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">index</span>, element);<br>vals.size()<br></code></pre></td></tr></table></figure>
+<h5 id="Heap-Stack">Heap &amp; Stack</h5>
+<p>memory regions:</p>
+<ol>
+<li>Code</li>
+<li>Static memory : static variables</li>
+<li>The Stack(Automatic memory) : local variables, reference variables in main</li>
+<li>The Heap(free store) : Object</li>
+</ol>
+<h1>Exception Handling</h1>
+<p>try - will exit immediately when throwing an exception<br>
+catch - exception handler</p>
+<p>0/0 -&gt;exception<br>
+0.0/0.0 -&gt;NaN</p>
+<p><code>throw new Exception(&quot;A message here&quot;).</code><br>
+<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509212055529.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getArea</span><span class="hljs-params">(Scanner scnr)</span> <span class="hljs-keyword">throws</span> Exception</span>&#123; &#125;<br></code></pre></td></tr></table></figure>
+<h5 id="Unchecked-vs-Checked-Exceptions">Unchecked vs Checked Exceptions</h5>
+<p>Checked : need to handle within the program</p>
+<p>Unchecked : not expected to catch and handle when running<br>
+Ex.</p>
+<ol>
+<li>NullPointerException</li>
+<li>ArithmeticException</li>
+<li>IOError</li>
+<li>ClassCastException</li>
+<li>IllegalArgumentException</li>
+</ol>
+<h5 id="throws">throws</h5>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509212153890.png" srcset="/img/loading.gif" lazyload alt=""><br>
+throws InvalidNegativeInputException, NaNException: No orders</p>
+<h5 id="Finally">Finally</h5>
+<p>always run the code when a exception occurs BEFORE return or code crash<br>
+<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509221457427.png" srcset="/img/loading.gif" lazyload alt=""><br>
+<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509221458663.png" srcset="/img/loading.gif" lazyload alt=""><br>
+Return and New Exceptions will be replaced the one in the Finally<br>
+Before return or break or continue, the code in finally will be still operated.</p>
+<p>Code Crash: Note that 3 is before crashing<br>
+<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202509221502159.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Define-exception">Define exception</h5>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NaNException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>&#123;<br>   public <span class="hljs-type">NaNException</span>() &#123;<br>      <span class="hljs-keyword">super</span>(<span class="hljs-string">&quot;NaN Exception&quot;</span>);<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="Closing-files">Closing files</h5>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">if</span> (fileScanner != <span class="hljs-keyword">null</span>) &#123;<br>         fileScanner.<span class="hljs-keyword">close</span>();<br>         <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Closed input.txt&quot;);<br>      &#125;<br><br>      <span class="hljs-keyword">if</span> (fileWriter != <span class="hljs-keyword">null</span>) &#123;<br>         fileWriter.<span class="hljs-keyword">close</span>();<br>         <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Closed output.txt&quot;);<br>      &#125;<br></code></pre></td></tr></table></figure>
+<p>try with resources</p>
+<p><code>try (Scanner fileScnr = new Scanner(new FileInputStream(&quot;input.txt&quot;)))</code></p>
+<h5 id="Java-short-circuiting">Java short-circuiting</h5>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">boolean[] <span class="hljs-attribute">s</span>=<span class="hljs-literal">null</span>;<br>boolean <span class="hljs-attribute">a</span>=<span class="hljs-literal">true</span>;<br><span class="hljs-attribute">a</span>=a||s[0]; could work!<br></code></pre></td></tr></table></figure>
+<p>if we replace || to &amp;&amp;, it can’t work</p>
+<h1>Class</h1>
+<p>`Restaurant favLunchPlace = new Restaurant();</p>
+<p>Field(or Member Variables):<br>
+field 1 field 2 private field(can’t be accessed by class users but member method)</p>
+<p>Method</p>
+<p>Field and method subsitute the class members</p>
+<h5 id="Private-Field-Static-Field">Private Field &amp; Static Field</h5>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">private</span> <span class="hljs-type">int</span> s;<br><span class="hljs-type">static</span> <span class="hljs-type">int</span> p;<br></code></pre></td></tr></table></figure>
+<p>s could not be used outside of the class.<br>
+p is static and used for every object of this class. They have the same one.</p>
+<p>Those kind of variable could be used before declaration</p>
+<h5 id="Mutators-Accessors-Constructors">Mutators Accessors Constructors</h5>
+<p>mutator – change the value<br>
+accessor – get without changing<br>
+constructor : (if you don’t define, the compiler will generate automatically)</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">thenameofclass</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-keyword">this</span>.a=a;<br>   <span class="hljs-keyword">this</span>.b=b;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="Constructor-overloading">Constructor overloading</h5>
+<p>If any constructor defined, no-arg constructor should also be defined</p>
+<h1>Inheritance</h1>
+<p>Derived class &lt;- Base Class</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProduceItem</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">GenericIte</span></span><br></code></pre></td></tr></table></figure>
+<p>can be derived ONLY 1 class</p>
+<p>Derived class can only access parameters that is not private of the Base.</p>
+<p>Members: Protected : Accessible only  in derived class and main</p>
+<p>Classes : Usually No specifier or public</p>
+<h5 id="Override">Override</h5>
+<p>The @Override annotation causes the compiler to produce an error when a programmer mistakenly specifies parameters.</p>
+<p>Annotation means it will be viewed by the compiler, if we don’t write the @Override and the overriding is failed, then it will compile successful.</p>
+<p>However, it will be hard to find the bug, so it is good to use @Override.</p>
+<p>call the overridden method just the base(base of base is incorrect): `super.method();</p>
+<h5 id="Object-Class">Object Class</h5>
+<p>Two common methods:</p>
+<ol>
+<li>toString()    returns the String representation of this object like java.lang.Object@372f7a8d</li>
+<li>equals(otherObject)  compares the reference</li>
+</ol>
+<p>println() automatically calls toString() and help to decrease the risk of NullPointerException (String concatenation as well)<br>
+But String s =  classname is $\times$ !!!</p>
+<h5 id="Polymorphism">Polymorphism</h5>
+<p>ArrayList &lt;baseclass&gt; inventoryList = new ArrayList &lt;baseclass&gt;</p>
+<ol>
+<li>Runtime polymorphism</li>
+</ol>
+<p>iterate the objects in the arraylist, the JVM will automatically use different method(overriding) due to different class type, this is called Runtime polymorphism</p>
+<h5 id="Abstract-Class">Abstract Class</h5>
+<p>a class that guides the design of subclasses but cannot itself be instantiated as an object</p>
+<p>Abstract Method: not inplemented in the base class and need to be overridden in subclasses.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tree</span> </span>&#123;<br>    int age;<br>    <span class="hljs-type">Location</span> location;<br>    public <span class="hljs-keyword">abstract</span> <span class="hljs-type">Fruit</span> produceFruit(); <br>&#125;<br><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Oak</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Tree</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    public <span class="hljs-type">Fruit</span> produceFruit() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">Acorn</span>(); <br>    &#125;<br>&#125;<br><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pine</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Tree</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    public <span class="hljs-type">Fruit</span> produceFruit() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">PineCone</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Subclasses have things common and required – use Abstract Classes<br>
+Subclasses only have additional features – inheritance is enough</p>
+<p>Public / Protected : All subclass need to override the abstract method<br>
+Default : Subclass in a package need to override the abstract method<br>
+Private : Absolutely wrong.</p>
+<h5 id="Overriding-on-multiple-classes">Overriding on multiple classes</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> &#123; <span class="hljs-comment">// extends Object is implicit</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> fieldB;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> &#123;<br>        <span class="hljs-type">B</span> <span class="hljs-variable">other</span> <span class="hljs-operator">=</span> (B) obj;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.fieldB == other.fieldB; <br>    &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">B</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">char</span> fieldA;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> &#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">super</span>.equals(obj)) &#123; <span class="hljs-comment">// super.equals() calls B equals method!</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-type">A</span> <span class="hljs-variable">other</span> <span class="hljs-operator">=</span> (A) obj;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.fieldA == other.fieldA;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>A overide B and B override Object, But they need to have same method signature, which means in A equals(B b) is wrong.</p>
+<h1>Generic methods</h1>
+<p>A generic method is a method definition having a special type parameter that may be used in place of types in the method<br>
+<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510051947831.png" srcset="/img/loading.gif" lazyload alt=""><br>
+The Java compiler internally replaces type parameters like &lt;ElemType&gt; with the Object type.<br>
+Type erasure is the compiler’s replacement of type parameters with a common base type.</p>
+<h5 id="Type-Erasure">Type Erasure</h5>
+<p>The generic will only be a description when compiling, and during runtime, the generic list will be erased to Base Type(Usually Object).</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;<span class="hljs-title class_">String</span>&gt; <span class="hljs-built_in">void</span> <span class="hljs-title function_">aaa</span>(<span class="hljs-params"><span class="hljs-title class_">String</span> a, <span class="hljs-title class_">String</span> b</span>)<br>&#123;<br>  <span class="hljs-keyword">return</span> a+b;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>This will cause a compiler error: a and b will be recognized as Object during runtime.</p>
+<p>But if we use the toString, it will use the Overriddened String toString because of polymorphism.</p>
+<h5 id="Bounded-type-parameters">Bounded type parameters</h5>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scala">public static &lt;<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Number&gt;</span> <span class="hljs-title">void</span> <span class="hljs-title">aaa</span>(<span class="hljs-params">type[] a, type b</span>)</span><br></code></pre></td></tr></table></figure>
+<h5 id="Generic-classes">Generic classes</h5>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510052204078.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><code>Pair&lt;String&gt; username = new Pair&lt;String&gt;(&quot;deft&quot;, &quot;bagel&quot;);</code></p>
+<h5 id="Interface">Interface</h5>
+ <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">Drawable</span> &#123;<br>   <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> draw(Graphics2D graphicsObject);<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">Square</span> <span class="hljs-symbol">implements</span> <span class="hljs-symbol">Drawable, <span class="hljs-symbol">DrawableASCII</span></span> <br></code></pre></td></tr></table></figure>
+<p>Interface does not require the write an abstract</p>
+<h1>Algorithm Analysis</h1>
+<h5 id="O-notation">O notation</h5>
+<p>determined by the highest order term of the function, if it is a product of several factors, the constant will be omitted. Same growth rate has save O notation.</p>
+<p>O(N) = O(100N) = O(N+99999)</p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510170958410.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510171000008.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510171000117.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="constant-time-operation-O-1">constant time operation O(1)</h5>
+<p>an operation that, for a given processor, always operates in the same amount of time, regardless of input values.</p>
+<p>assignment of variable - constant<br>
+multiplication of fixed number - constant</p>
+<ol>
+<li>loop - not constant</li>
+<li>String concatenation - not constant</li>
+<li>LinkedList.get(index) - not constant</li>
+<li>list.add(0, 100) - not constant</li>
+<li>calculations on unknown int - constant</li>
+</ol>
+<p>1 is not constant because we could not know the actual value of variables after compiling.</p>
+<p>2 3 4 is not constant because there are n manipulation.</p>
+<p>worst-case runtime of an algorithm is the runtime complexity for an input that results in the longest execution</p>
+<p>O(log N) = O($log_2$N) = O($log_{10}$N) = O($log_e$N)<br>
+O(N + M) = O(max(N,M))</p>
+<h5 id="Upper-and-lower-bounds">Upper and lower bounds</h5>
+<p>Lower Bounds: single term polynomial and bounds T(N) as tightly as possible<br>
+e.g.<br>
+T(N) = 5N+4 -&gt; O(N) and O(9N)<br>
+T(worst: 3$N^2$ + 10N+17, best: 2$N^2$ + 5N+5) -&gt; O(2$N^2$) and O(30$N^2$)</p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510171024225.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>Recursion</h1>
+<h5 id="recursive-method">recursive method</h5>
+<p>method call other methods, including calling itself</p>
+<h5 id="Binary-Search">Binary Search</h5>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs arcade">BinarySearch(numbers, low, high, key) &#123;<br>   <span class="hljs-keyword">if</span> (low &gt; high) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>   &#125;<br><br>   <span class="hljs-built_in">mid</span> = (low + high) / <span class="hljs-number">2</span><br>   <span class="hljs-keyword">if</span> (numbers[<span class="hljs-built_in">mid</span>] &lt; key) &#123;<br>      <span class="hljs-keyword">return</span> BinarySearch(numbers, <span class="hljs-built_in">mid</span> + <span class="hljs-number">1</span>, high, key)<br>   &#125;<br>   <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (numbers[<span class="hljs-built_in">mid</span>] &gt; key) &#123;<br>      <span class="hljs-keyword">return</span> BinarySearch(numbers, low, <span class="hljs-built_in">mid</span> - <span class="hljs-number">1</span>, key)<br>   &#125;<br>   <span class="hljs-keyword">return</span> <span class="hljs-built_in">mid</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>base case: without applying itself to a smaller subproblem</p>
+<h1>Sorting</h1>
+<h5 id="Selection-Sort">Selection Sort</h5>
+<p>Select smallest index -&gt; swap array[i] and array[smallestindex] -&gt;sort array from i+1 to length - 1.</p>
+<p>Worst : N - 1 swaps<br>
+O($N^2$)</p>
+<h5 id="Insertion-Sort">Insertion Sort</h5>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">for (i = <span class="hljs-number">1</span><span class="hljs-comment">; i &lt; numbers.length; ++i) &#123;</span><br> <span class="hljs-keyword">j </span>= i;<br> while (<span class="hljs-keyword">j </span>&gt; <span class="hljs-number">0</span> &amp;&amp; numbers[<span class="hljs-keyword">j] </span>&lt; numbers[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>]) &#123;<br>    temp = numbers[<span class="hljs-keyword">j];</span><br><span class="hljs-keyword"></span>    numbers[<span class="hljs-keyword">j] </span>= numbers[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>];<br>    numbers[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>] = temp;<br>    --<span class="hljs-keyword">j; </span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Worst : $\frac{N(N-1)}{2}$ swaps<br>
+O($N^2$)</p>
+<h5 id="Merge-Sort">Merge Sort</h5>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> mergeSort(<span class="hljs-type">int</span> [] numbers, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> k) &#123;<br>      <span class="hljs-type">int</span> j;<br><br>      <span class="hljs-keyword">if</span> (i &lt; k) &#123;<br>         j = (i + k) / <span class="hljs-number">2</span>;  <br>         mergeSort(numbers, i, j);<br>         mergeSort(numbers, j + <span class="hljs-number">1</span>, k);<br>         merge(numbers, i, j, k);<br>      &#125;<br>   &#125;<br>   <span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> merge(<span class="hljs-type">int</span> [] numbers, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> k) &#123;<br>      <span class="hljs-type">int</span> mergedSize = k - i + <span class="hljs-number">1</span>;    <br>      <span class="hljs-type">int</span> mergedNumbers [] = <span class="hljs-built_in">new</span> <span class="hljs-type">int</span>[mergedSize];<br>      <span class="hljs-type">int</span> mergePos;                     <br>      <span class="hljs-type">int</span> leftPos;                     <br>      <span class="hljs-type">int</span> rightPos;                   <br><br>      mergePos = <span class="hljs-number">0</span>;<br>      leftPos = i;                      <br>      rightPos = j + <span class="hljs-number">1</span>;               <br> <br>      <span class="hljs-keyword">while</span> (leftPos &lt;= j &amp;&amp; rightPos &lt;= k) &#123;<br>         <span class="hljs-keyword">if</span> (numbers[leftPos] &lt;= numbers[rightPos]) &#123;<br>            mergedNumbers[mergePos] = numbers[leftPos];<br>            ++leftPos;<br>         &#125; <br>         <span class="hljs-keyword">else</span> &#123;<br>            mergedNumbers[mergePos] = numbers[rightPos];<br>            ++rightPos;<br>         &#125;<br>         ++mergePos;<br>      &#125;<br><br>      <span class="hljs-keyword">while</span> (leftPos &lt;= j) &#123;<br>         mergedNumbers[mergePos] = numbers[leftPos];<br>         ++leftPos;<br>         ++mergePos;<br>      &#125;<br><br><br>      <span class="hljs-keyword">while</span> (rightPos &lt;= k) &#123;<br>         mergedNumbers[mergePos] = numbers[rightPos];<br>         ++rightPos;<br>         ++mergePos;<br>      &#125;<br><br>      <span class="hljs-keyword">for</span> (mergePos = <span class="hljs-number">0</span>; mergePos &lt; mergedSize; ++mergePos) &#123;<br>         numbers[i + mergePos] = mergedNumbers[mergePos];<br>      &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+<h5 id="Quick-Sort">Quick Sort</h5>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> static <span class="hljs-type">int</span> <span class="hljs-keyword">partition</span>(<span class="hljs-type">int</span> [] numbers, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> k) &#123;<br>      <span class="hljs-type">int</span> l;<br>      <span class="hljs-type">int</span> h;<br>      <span class="hljs-type">int</span> midpoint;<br>      <span class="hljs-type">int</span> pivot;<br>      <span class="hljs-type">int</span> <span class="hljs-keyword">temp</span>;<br>      <span class="hljs-type">boolean</span> done;<br><br>      midpoint = i + (k - i) / <span class="hljs-number">2</span>;<br>      pivot = numbers[midpoint];<br><br>      done = <span class="hljs-keyword">false</span>;<br>      l = i;<br>      h = k;<br><br>      <span class="hljs-keyword">while</span> (!done) &#123;<br>         <span class="hljs-keyword">while</span> (numbers[l] &lt; pivot) &#123;<br>            ++l;<br>         &#125;<br><br>         <span class="hljs-keyword">while</span> (pivot &lt; numbers[h]) &#123;<br>            <span class="hljs-comment">--h;</span><br>         &#125;<br><br>         <span class="hljs-keyword">if</span> (l &gt;= h) &#123;<br>            done = <span class="hljs-keyword">true</span>;<br>         &#125; <br>         <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">temp</span> = numbers[l];<br>            numbers[l] = numbers[h];<br>            numbers[h] = <span class="hljs-keyword">temp</span>;<br><br>            ++l;<br>            <span class="hljs-comment">--h;</span><br>         &#125;<br>      &#125;<br><br>      <span class="hljs-keyword">return</span> h;<br>   &#125;<br><br>   <span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> quicksort(<span class="hljs-type">int</span> [] numbers, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> k) &#123;<br>      <span class="hljs-type">int</span> j;<br><br>      <span class="hljs-keyword">if</span> (i &gt;= k) &#123;<br>         <span class="hljs-keyword">return</span>;<br>      &#125;<br><br>      j = <span class="hljs-keyword">partition</span>(numbers, i, k);<br>      quicksort(numbers, i, j);<br>      quicksort(numbers, j + <span class="hljs-number">1</span>, k);<br>   &#125;<br></code></pre></td></tr></table></figure>
+<p>Best : O(logN * N)<br>
+Worst : O(N^2)</p>
+<h5 id="Heapsort">Heapsort</h5>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">Heapsort</span>(numbers, numbersSize) &#123;<br>   <span class="hljs-comment">// Heapify numbers array</span><br>   for (i = numbersSize / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>      <span class="hljs-built_in">MaxHeapPercolateDown</span>(i, numbers, numbersSize)<br>   &#125;<br><br>   for (i = numbersSize - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--) &#123;<br>      Swap numbers<span class="hljs-selector-attr">[0]</span> and numbers<span class="hljs-selector-attr">[i]</span><br>      <span class="hljs-built_in">MaxHeapPercolateDown</span>(<span class="hljs-number">0</span>, numbers, i)<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>O(NlogN)</p>
+<h1>Linked List</h1>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202511021403956.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>ArrayList : faster access<br>
+LinkedList : faster removing and appending</p>
+<p>ArrayList:<br>
+add(a, b); add b at index a<br>
+2: remove(Object) remove(index)</p>
+<p>remove Integer ArrayList:<br>
+1 2 3 -&gt; 1 3<br>
+remove(1) or remove(new Integer(2))</p>
+<h5 id="Array-Based-lists">Array-Based lists</h5>
+<p>list: length<br>
+array: use allocation size and &gt;= length</p>
+<p>append(list, element)<br>
+resize() -&gt; allocation size * 2 usually but can’t use directly<br>
+prepend(list, element)<br>
+insertAt(list, index, element)<br>
+search(list, item)<br>
+remove(list, index)  – change length but do not change allocation size</p>
+<h5 id="Singly-linked-lists">Singly-linked lists</h5>
+<p>a type of positional list<br>
+first node - head<br>
+last node - tail</p>
+<p>numberList - head and tail<br>
+element 1 - data , next<br>
+element 2 - data , next<br>
+…<br>
+element N - data , next = null<br>
+<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202511021931865.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Linked-List">Linked List</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.LinkedList<br>LinkedList&lt;T&gt; linkedList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;T&gt;()<br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs routeros">list.<span class="hljs-built_in">add</span>(index, element);<br>list.<span class="hljs-built_in">add</span>(element);<br>list.<span class="hljs-built_in">get</span>(index);<br>list.<span class="hljs-built_in">set</span>(index, element);<br>list.<span class="hljs-built_in">remove</span>(index);<br>list.<span class="hljs-built_in">remove</span>(element);<br>list.size();<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">import</span> java.util.ListIterator;<br><span class="hljs-comment">// provides a method to iterate linkedlist</span><br><br>ListIterator&lt;T&gt; listIterator = authorsList.listIterator();<br><br>listIterator.hasNext()<br>listIterator.hasPrevious()<br>listIterator.<span class="hljs-keyword">next</span>()<br>listIterator.<span class="hljs-keyword">previous</span>()<br>listIterator.previousIndex()<br><br>listIterator.set(upperCaseName);<br>listIterator.add(newElement);<br><span class="hljs-comment">//Adds the newElement between the next and previous elements and moves the ListIterator after newElement.</span><br>listIterator.remove();<br><span class="hljs-comment">//Removes the element returned by the prior call to next() or previous(). Fails if used more than once per call to next() or previous(). Fails if add() has already been called since the last call to next() or previous().</span><br><br><br>listIterator.nextIndex()<br><br><br><br></code></pre></td></tr></table></figure>
+<h5 id="Doubly-linked-lists">Doubly-linked lists</h5>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202511022300551.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>Stacks, Queues and Iterators</h1>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202511081551468.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>full stack: length -&gt; max<br>
+resize: length == allocationSize</p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202511081619764.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>Binary Tree</h1>
+<p>Binary Search Tree<br>
+all keys in left subtree &lt; key &lt; all keys in right subtree</p>
+<p>edge : link to a child.<br>
+depth : number of edges from root. Roots’ depth = 0.<br>
+level : all nodes in same depth.<br>
+height : maximum of depth in a tree.</p>
+<p>Every node contains 0 or 2 children -&gt; full<br>
+All leaves in same level + every internal has 2 children -&gt; perfect<br>
+Perfect without last level + last level displays from left to right -&gt; complete</p>
+<p>subtree: all descendants with the root of them</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Notes/" class="category-chain-item">Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CS300-Java</div>
+      <div>https://miao62.github.io/2025/09/10/CS 300/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 10, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/13/%E9%AB%98%E8%B5%84%E6%9C%AC%E6%95%88%E7%8E%87PMCC/" title="PMCC">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PMCC</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/04/MATH%20431%20%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/" title="MATH 431 第一章作业">
+                        <span class="hidden-mobile">MATH 431 第一章作业</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
