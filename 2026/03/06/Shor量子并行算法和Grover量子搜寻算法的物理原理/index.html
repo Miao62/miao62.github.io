@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引言：量子计算机与普通计算机的区别量子计算机与经典计算机在信息处理和计算能力上有显著差异。经典计算机使用比特（bit）作为基本单元，每个比特只能是0或1，通过经典逻辑门，如与门(AND)、或门(OR)、非门(NOT)进行确定性计算。而量子计算机使用量子比特（qubit），量子比特可以处于0和1的叠加态，通过量子门（如Hadamard门、CNOT门）进行量子叠加和量子纠缠操作，而且允许并行处理多个状">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shor量子并行算法和Grover量子搜寻算法的物理原理">
+<meta property="og:url" content="https://miao62.github.io/2026/03/06/Shor%E9%87%8F%E5%AD%90%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%92%8CGrover%E9%87%8F%E5%AD%90%E6%90%9C%E5%AF%BB%E7%AE%97%E6%B3%95%E7%9A%84%E7%89%A9%E7%90%86%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="引言：量子计算机与普通计算机的区别量子计算机与经典计算机在信息处理和计算能力上有显著差异。经典计算机使用比特（bit）作为基本单元，每个比特只能是0或1，通过经典逻辑门，如与门(AND)、或门(OR)、非门(NOT)进行确定性计算。而量子计算机使用量子比特（qubit），量子比特可以处于0和1的叠加态，通过量子门（如Hadamard门、CNOT门）进行量子叠加和量子纠缠操作，而且允许并行处理多个状">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407282318154.jpg">
+<meta property="article:published_time" content="2026-03-06T06:54:05.456Z">
+<meta property="article:modified_time" content="2024-07-30T09:53:46.128Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407282318154.jpg">
+  
+  
+  
+  <title>Shor量子并行算法和Grover量子搜寻算法的物理原理 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao62.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Shor量子并行算法和Grover量子搜寻算法的物理原理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-06 14:54" pubdate>
+          March 6, 2026 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Shor量子并行算法和Grover量子搜寻算法的物理原理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="引言：量子计算机与普通计算机的区别"><a href="#引言：量子计算机与普通计算机的区别" class="headerlink" title="引言：量子计算机与普通计算机的区别"></a>引言：量子计算机与普通计算机的区别</h4><p>量子计算机与经典计算机在信息处理和计算能力上有显著差异。经典计算机使用<strong>比特</strong>（bit）作为基本单元，每个比特只能是0或1，通过经典逻辑门，如与门(AND)、或门(OR)、非门(NOT)进行确定性计算。而量子计算机使用<strong>量子比特</strong>（qubit），量子比特可以处于0和1的叠加态，通过量子门（如Hadamard门、CNOT门）进行量子叠加和量子纠缠操作，而且允许并行处理多个状态。此外，经典计算机的计算能力线性增长，而量子计算机则呈指数增长，特别适用于解决特定的复杂问题，尤其是一些需要暴力求解的题目。</p>
+<h4 id="Shor量子并行算法"><a href="#Shor量子并行算法" class="headerlink" title="Shor量子并行算法"></a>Shor量子并行算法</h4><h5 id="算法与算法原理"><a href="#算法与算法原理" class="headerlink" title="算法与算法原理"></a>算法与算法原理</h5><p>算出两个大质数的乘积是一个很容易的事情，但是反过来就需要出奇大的计算量，一般来说对一个大数$N$，传统算法要计算$\sqrt{N}&#x3D;2^{\frac{1}{2}\log_2 N}$步，以普通计算机的算力，只要$N$上百位就算不出来了。因此早期这个问题和&#x3D;&#x3D;离散对数难题&#x3D;&#x3D;、&#x3D;&#x3D;椭圆曲线离散对数难题&#x3D;&#x3D;被广泛应用于加密信息的传播中。<br>Shor算法是由彼得·肖于1994年提出的一种量子算法，能够在<strong>多项式时间</strong>(多项式时间往往被视为计算机程序运行的有效时间，指数时间或更长会导致计算机几乎难以进行程序)内对大整数进行因数分解。这对于许多基于因数分解困难性的加密系统，如RSA加密，具有重要的影响。<br>Shor算法利用量子力学的基本原理，如量子叠加、量子纠缠和量子傅里叶变换，把大数的因子分解转化为求某个函数的周期，来实现高效的因数分解。量子计算的基本单位量子比特可以同时处于0和1的叠加态。这种叠加态可以用公式表示为：$$\left | \psi \right \rangle &#x3D;\alpha \left | 0\right \rangle+\beta \left \langle 1\right |$$其中，$\alpha,\beta$满足$$|\alpha|^2+|\beta|^2&#x3D;1(\alpha,\beta\in\mathbb{C})$$<br>量子叠加态允许量子计算机同时探索多个计算路径，这种能力被称为<strong>量子并行</strong>,这是经典计算机所没有的。<strong>量子纠缠</strong>会使一个量子比特的状态会立即影响另一个纠缠量子比特的状态，这种现象是量子计算中实现快速信息传递和处理的重要机制。<strong>量子傅里叶变换,QFT</strong>是Shor算法的核心部分，它是一种线性变换，能够将一个量子比特的状态从时间域转换到频率域，这在因数分解中用于找到周期。具体来说，QFT将一个输入量子态 (|x\rangle) 映射到一个输出态  (|y\rangle) ，其中 (|y\rangle) 是 (|x\rangle) 的傅里叶变换。其数学表达式为：[ QFT(|x\rangle) &#x3D; \frac{1}{\sqrt{N}} \sum_{k&#x3D;0}^{N-1} e^{\frac{2\pi i xk}{N} } |k\rangle ]这些特征使得Shor算法的运行速度远远快于传统计算机。</p>
+<h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h5><p>Shor算法的具体步骤如下：</p>
+<ol>
+<li>选择一个随机数$a$，计算$\gcd(a, N)$。如果$\gcd(a, N) ≠ 1$，则已找到因数。</li>
+<li>如果$gcd(a, N) &#x3D; 1$，构造量子态并进行量子傅里叶变换，寻找函数$f(x) &#x3D; a^x\mod N$的周期$T$(量子计算机在计算周期$T$时具有显著优势)</li>
+<li>如果$T$是奇数，那么重新选取$a$再来一遍；如果$T$是偶数，我们取$y&#x3D;a^{\frac{T}{2}}$</li>
+<li>有了$y$之后，我们就可以用欧几里德辗转相除法求得$y-1$,$y+1$与$N$的最大公约数$n_1$,$n_2$,则可以找到$N$的质因子。</li>
+</ol>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>假设要因数分解$N &#x3D; 15$，选择$a &#x3D; 2$。</p>
+<ol>
+<li>计算$gcd(2, 15) &#x3D; 1$。</li>
+<li>构造量子态，进行量子傅里叶变换，找到周期$T &#x3D; 4$。</li>
+<li>$T$是偶数，计算$2^{\frac{r}{2}} ± 1 &#x3D; 4 ± 1 &#x3D; 3, 5$。</li>
+<li>得$\gcd(3, 15) &#x3D; 3$和$\gcd(5, 15) &#x3D; 5$，因此$15$的质因子是$3$和$5$。</li>
+</ol>
+<h4 id="Grover量子搜索算法"><a href="#Grover量子搜索算法" class="headerlink" title="Grover量子搜索算法"></a>Grover量子搜索算法</h4><h5 id="算法与算法原理-1"><a href="#算法与算法原理-1" class="headerlink" title="算法与算法原理"></a>算法与算法原理</h5><p>Grover算法是由洛夫·格罗佛于1996年提出的一种量子搜索算法，适用于<strong>无结构数据库</strong>的搜索问题。经典算法在无序数据库中搜索N个元素需要$O(N)$时间，而Grover算法能够在$O(\sqrt{N})$时间内完成搜索，显著提高了搜索效率。Grover算法利用量子叠加和量子干涉原理，通过放大目标解的概率幅度来实现高效搜索。<br>Grover算法首先通过Hadamard门操作创建一个均匀的叠加态，表示所有解的均匀分布。Hadamard门是一种基本的单量子比特操作，其作用是将量子态从标准基态转换为均匀叠加态。其矩阵表示为<br>[ H &#x3D; \frac{1}{\sqrt{2}} \begin{pmatrix} 1 &amp; 1 \ 1 &amp; -1 \end{pmatrix} ]<br>当Hadamard门作用于量子比特时：</p>
+<ul>
+<li>对 $|0\rangle$态，结果为 $\frac{|0\rangle + |1\rangle}{\sqrt{2}}$</li>
+<li>对 $|1\rangle$ 态，结果为 $\frac{|0\rangle - |1\rangle}{\sqrt{2}}$</li>
+</ul>
+<p>Grover迭代包括两个主要步骤：Oracle查询和幅度放大。Oracle是一个黑盒函数，能够识别目标元素，并在其对应状态上加一个负号。它通过翻转正确解的相位，使其在后续的量子操作中被识别和放大。幅度放大通过特定的量子门操作实现，增加目标状态的概率幅度，同时减少其他状态的概率幅度，逐渐将目标状态的概率幅度升高。进行多次Grover迭代后，再通过量子测量获取结果。由于目标状态的概率幅度被显著放大，测量结果很有可能是正确解。与经典搜索相比，Grover算法在搜索效率上有平方级别的加速。<br>不过值得注意的是，Grover算法在一些情况下有缺陷。Grover算法的成功率会随着数据量的上升以及标记态占比的上升大幅下降，主要是因为粗糙的180$^{。}$相位变换。2001年改进的Grover算法能够通过多次算法迭代，能够有效提高搜索成功率。</p>
+<h5 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="算法步骤"></a>算法步骤</h5><p>Grover算法的具体步骤如下：</p>
+<h6 id="1-初始化量子态"><a href="#1-初始化量子态" class="headerlink" title="1. 初始化量子态"></a>1. 初始化量子态</h6><p>首先，将所有量子比特初始化为 (|0\rangle) 状态，然后通过Hadamard门操作，将这些量子比特转换成均匀叠加态。通过Hadamard门操作后，所有可能的状态均匀叠加。<br> $$ |0\rangle \rightarrow H|0\rangle &#x3D; \frac{1}{\sqrt{N}} \sum_{x&#x3D;0}^{N-1} |x\rangle$$</p>
+<h6 id="2-Oracle操作"><a href="#2-Oracle操作" class="headerlink" title="2. Oracle操作"></a>2. Oracle操作</h6><p>Oracle是一个黑盒函数，用来标记目标项。它通过相位反转（即乘以-1）来识别目标状态。</p>
+<ul>
+<li>如果当前状态是目标状态，则相位反转：<br>$$O|x\rangle &#x3D; \begin{cases}<br>-|x\rangle &amp; \text{如果 } x \text{ 是目标} \<br>|x\rangle &amp; \text{如果 } x \text{ 不是目标}<br>\end{cases}$$</li>
+</ul>
+<h6 id="3-反射"><a href="#3-反射" class="headerlink" title="3. 反射"></a>3. 反射</h6><p>反射（又叫做”扩散变换”）用来放大目标状态的概率。这个步骤包括以下操作：</p>
+<ol>
+<li>对所有量子比特应用Hadamard门，将状态转换到均匀叠加态的对称基态。</li>
+<li>对所有量子比特应用相位反转操作。</li>
+<li>再次应用Hadamard门，将状态转换回原始基态。</li>
+</ol>
+<h6 id="4-Grover迭代"><a href="#4-Grover迭代" class="headerlink" title="4. Grover迭代"></a>4. Grover迭代</h6><p>将步骤2和步骤3组合成一次Grover迭代。重复这个迭代大约 (\sqrt{N}) 次。每次迭代都会放大目标状态的概率。</p>
+<h6 id="5-测量"><a href="#5-测量" class="headerlink" title="5. 测量"></a>5. 测量</h6><p>经过多次迭代后，对量子比特进行测量。由于目标态的概率已经被放大，此时测量结果是目标态的概率非常高。</p>
+<h5 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h5><p>假设要在包含N &#x3D; 4个元素的无序数据库中搜索目标元素。数据库包含元素{1, 2, 3, 4}，目标元素为3。</p>
+<ol>
+<li><p>初始化量子比特，创建均匀叠加态：$$|\psi⟩ &#x3D; \frac{1}{2}(|1⟩ + |2⟩ + |3⟩ + |4⟩)$$</p>
+</li>
+<li><p>使用oracle函数查询目标元素3，翻转其相位：$$|\psi’⟩ &#x3D; \frac{1}{2}(|1⟩ + |2⟩ - |3⟩ + |4⟩)$$</p>
+</li>
+<li><p>进行Grover迭代，放大目标解的概率幅度：<br>通过几何旋转和反射操作，使得状态|3⟩的概率幅度增大。</p>
+</li>
+<li><p>经过足够多次迭代后，进行量子测量，大概率得到目标元素3。</p>
+</li>
+</ol>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>Shor量子并行算法和Grover量子搜索算法是量子计算领域的两个重要算法，它们优化了一些复杂问题的算力需要，还展示了量子计算在解决特定复杂问题上的巨大潜力。Shor算法能够在多项式时间内因数分解大整数，有力地威胁当前基于因数分解难题的加密系统。Grover算法则显著提高了无结构数据库搜索的效率，展示了量子化计算在数据处理和优化问题上的潜力。随着量子计算技术的发展，这些算法将为未来计算领域带来深远影响。</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><ol>
+<li>龙桂鲁.量子计算算法介绍[J].物理,2010,39(12):803-809.</li>
+<li>王潮,姚皓南,王宝楠等.量子计算密码攻击进展[J].计算机学报,2020,43(09):1691-1707.</li>
+<li>马颖. 基于量子计算理论的优化算法研究[D].西北工业大学,2015.</li>
+<li>王永利,徐秋亮.量子计算与量子密码的原理及研究进展综述[J].计算机研究与发展,2020,57(10):2015-2026.</li>
+</ol>
+<p>最终给分:92&#x2F;100</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OpenAssIgnments/" class="category-chain-item">OpenAssIgnments</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Shor量子并行算法和Grover量子搜寻算法的物理原理</div>
+      <div>https://miao62.github.io/2026/03/06/Shor量子并行算法和Grover量子搜寻算法的物理原理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 6, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/06/STM32/" title="STM32">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">STM32</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/06/Reveries-Test/" title="Reveries-Test">
+                        <span class="hidden-mobile">Reveries-Test</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

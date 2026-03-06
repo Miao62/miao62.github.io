@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LED点亮P2&#x3D;0xFE;操纵LED的亮灭,后面两个字母是16进制,换为1111 11101代表灭,0代表亮 闪烁完整代码如下 1234567891011121314151617181920212223242526272829#include &lt;REGX52.H&gt;#include &lt;INTRINS.H&gt;void Delay500ms()		&#x2F;&#x2F;@12.000MHz&amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51单片机">
+<meta property="og:url" content="https://miao62.github.io/2026/03/06/51%E5%8D%95%E7%89%87%E6%9C%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LED点亮P2&#x3D;0xFE;操纵LED的亮灭,后面两个字母是16进制,换为1111 11101代表灭,0代表亮 闪烁完整代码如下 1234567891011121314151617181920212223242526272829#include &lt;REGX52.H&gt;#include &lt;INTRINS.H&gt;void Delay500ms()		&#x2F;&#x2F;@12.000MHz&amp;#123">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
+<meta property="article:published_time" content="2026-03-06T06:54:05.432Z">
+<meta property="article:modified_time" content="2024-08-21T09:14:57.127Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
+  
+  
+  
+  <title>51单片机 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao62.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="51单片机"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-06 14:54" pubdate>
+          March 6, 2026 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">51单片机</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="LED点亮"><a href="#LED点亮" class="headerlink" title="LED点亮"></a>LED点亮</h3><p><code>P2=0xFE;</code>操纵LED的亮灭,后面两个字母是16进制,换为1111 1110<br>1代表灭,0代表亮</p>
+<h4 id="闪烁"><a href="#闪烁" class="headerlink" title="闪烁"></a>闪烁</h4><p>完整代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;INTRINS.H&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Delay500ms</span><span class="hljs-params">()</span>		<span class="hljs-comment">//@12.000MHz</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i, j, k;<br><br>	_nop_();<br>	i = <span class="hljs-number">4</span>;<br>	j = <span class="hljs-number">205</span>;<br>	k = <span class="hljs-number">187</span>;<br>	<span class="hljs-keyword">do</span><br>	&#123;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--k);<br>		&#125; <span class="hljs-keyword">while</span> (--j);<br>	&#125; <span class="hljs-keyword">while</span> (--i);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		P2=<span class="hljs-number">0x55</span>;<br>		<span class="hljs-built_in">Delay500ms</span>();<br>		P2=<span class="hljs-number">0xAA</span>;<br>		<span class="hljs-built_in">Delay500ms</span>();<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>直接在stc-isp中找到软件延时计算器直接生成delay即可.<br>使用nop函数时要加上<code>&lt;INTRINS.H&gt;</code>头文件,nop函数为空函数,运行时间大约1$\mu$s.</p>
+<p>流水灯在while函数内多复制几个即可</p>
+<p>延时函数的改进:可以通过形参传入实现更加灵活的delay</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Delay1ms</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> t)</span>		<span class="hljs-comment">//@12.000MHz</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i, j;<br>	<span class="hljs-keyword">while</span>(t)<br>	&#123;<br>		i = <span class="hljs-number">2</span>;<br>		j = <span class="hljs-number">239</span>;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--j);<br>		&#125; <span class="hljs-keyword">while</span> (--i);<br>		t--;<br>	&#125;<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="按键控制"><a href="#按键控制" class="headerlink" title="按键控制"></a>按键控制</h3><p>单独控制一个LED:在<code>REGX52.H</code>头文件中,可以通过P2_X来操控单个灯</p>
+<table>
+<thead>
+<tr>
+<th>非零值</th>
+<th>灭</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>亮</td>
+</tr>
+</tbody></table>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">P2_0</span>=<span class="hljs-number">0</span><span class="hljs-comment">; \\light0 on</span><br><span class="hljs-attr">P3_0</span>=<span class="hljs-number">0</span><span class="hljs-comment">; \\按键按下</span><br></code></pre></td></tr></table></figure>
+
+<p>数据运算:<img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408091223269.png" srcset="/img/loading.gif" lazyload><br>单独的<code>if(P3_1==0)P2_0~P2_0</code>就已经满足要求了,但是在单片机开发中,往往会加一些防抖代码来防止点一次触发多次,简单的delay是一种思路.<br>按键防抖:</p>
+<ol>
+<li>硬件设计时防抖</li>
+<li>软件防抖 &#96;&#96;&#96;</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">if</span>(<span class="hljs-attribute">P3_0</span>=0)&#123;<br>	delay(20);<br>	<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P3_0</span>=0);<br>	delay(20);<br>	<span class="hljs-attribute">P2_0</span>=~P2_0;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>实现LED二进制递增效果(3-3):</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;INTRINS.H&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Delay1ms</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> t)</span>		<span class="hljs-comment">//@12.000MHz</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i, j;<br>	<span class="hljs-keyword">while</span>(t)<br>	&#123;<br>		i = <span class="hljs-number">2</span>;<br>		j = <span class="hljs-number">239</span>;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--j);<br>		&#125; <span class="hljs-keyword">while</span> (--i);<br>		t--;  <br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> num = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(P3_0 == <span class="hljs-number">0</span>)  <br>		&#123;<br>			<span class="hljs-built_in">Delay1ms</span>(<span class="hljs-number">20</span>);<br>			<span class="hljs-keyword">while</span>(P3_0 == <span class="hljs-number">0</span>);  <br>			<span class="hljs-built_in">Delay1ms</span>(<span class="hljs-number">20</span>);<br>			num++;<br>			P2 = ~num;  <br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>实现LED移位(3-4):</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">void</span> main()<br>&#123;<br>	<span class="hljs-built_in">int</span> <span class="hljs-built_in">num</span> = <span class="hljs-number">0</span>;<br>	P2=~<span class="hljs-number">0x01</span>;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(P3_0 == <span class="hljs-number">0</span>)  <br>		&#123;<br>			Delay1ms(<span class="hljs-number">20</span>);<br>			<span class="hljs-keyword">while</span>(P3_0 == <span class="hljs-number">0</span>);  <br>			Delay1ms(<span class="hljs-number">20</span>);<br>			<span class="hljs-built_in">num</span>++;<br>			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">num</span>==<span class="hljs-number">8</span>)<span class="hljs-built_in">num</span>=<span class="hljs-number">0</span>;<br>			P2 = ~(<span class="hljs-number">0x01</span>&lt;&lt;<span class="hljs-built_in">num</span>);  <br>		&#125;<br>		<span class="hljs-keyword">if</span>(P3_1 == <span class="hljs-number">0</span>)  <br>		&#123;<br>			Delay1ms(<span class="hljs-number">20</span>);<br>			<span class="hljs-keyword">while</span>(P3_1 == <span class="hljs-number">0</span>);  <br>			Delay1ms(<span class="hljs-number">20</span>);<br>			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">num</span>==<span class="hljs-number">0</span>)<span class="hljs-built_in">num</span>=<span class="hljs-number">7</span>;<br>			<span class="hljs-built_in">num</span>--;<br>			P2 = ~(<span class="hljs-number">0x01</span>&gt;&gt;<span class="hljs-built_in">num</span>);  <br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="数码管"><a href="#数码管" class="headerlink" title="数码管"></a>数码管</h3><p>数码管可以看作是LED的集合</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> NixieTable[<span class="hljs-number">10</span>]=&#123;<span class="hljs-number">0x3F</span>, <span class="hljs-number">0x06</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x4F</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0x6D</span>, <span class="hljs-number">0x7D</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x6F</span>&#125;;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Nixie</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> Location, Number)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">switch</span> (Location)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:P2_4=<span class="hljs-number">1</span>;P2_3=<span class="hljs-number">1</span>;P2_2=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:P2_4=<span class="hljs-number">1</span>;P2_3=<span class="hljs-number">1</span>;P2_2=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:P2_4=<span class="hljs-number">1</span>;P2_3=<span class="hljs-number">0</span>;P2_2=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:P2_4=<span class="hljs-number">1</span>;P2_3=<span class="hljs-number">0</span>;P2_2=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:P2_4=<span class="hljs-number">0</span>;P2_3=<span class="hljs-number">1</span>;P2_2=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:P2_4=<span class="hljs-number">0</span>;P2_3=<span class="hljs-number">1</span>;P2_2=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:P2_4=<span class="hljs-number">0</span>;P2_3=<span class="hljs-number">0</span>;P2_2=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:P2_4=<span class="hljs-number">0</span>;P2_3=<span class="hljs-number">0</span>;P2_2=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>	&#125;<br>	P0=NixieTable[Number];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-built_in">Nixie</span>(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>	<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这行代码实现了在第二个数码管显示为3的功能.<code>NixieTable</code>储存了数码管的输出代码<br>P0为数码管输出.P2的234控制哪个数码管,只能是234</p>
+<p>动态数码管显示(可以显示多个):</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss">void <span class="hljs-selector-tag">main</span>()<br>&#123;<br>	<span class="hljs-built_in">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-built_in">Nixie</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>		<span class="hljs-built_in">Nixie</span>(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>);<br>		<span class="hljs-built_in">Nixie</span>(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>原理是视觉暂留,这样才能同时显示多个数字.<br>但是此时运行会发现,不仅显示了123,残影影响十分严重,对<code>Nixie</code>函数改进,可以达到目的.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ruby">void <span class="hljs-title class_">Nixie</span>(unsigned char <span class="hljs-title class_">Location</span>, <span class="hljs-title class_">Number</span>)<br>&#123;<br>	switch (<span class="hljs-title class_">Location</span>)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">1</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">1</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">8</span><span class="hljs-symbol">:P2_4=</span><span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_3</span>=<span class="hljs-number">0</span>;<span class="hljs-variable constant_">P2_2</span>=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-variable constant_">P0</span>=<span class="hljs-title class_">NixieTable</span>[<span class="hljs-title class_">Number</span>];<br>	delay(<span class="hljs-number">1</span>);<br>	<span class="hljs-variable constant_">P0</span>=<span class="hljs-number">0x00</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408111924704.png" srcset="/img/loading.gif" lazyload alt="我们使用的是单片机直接扫描"></p>
+<h3 id="模块化编程"><a href="#模块化编程" class="headerlink" title="模块化编程"></a>模块化编程</h3><p>之后如<code>delay()</code>函数等较为常用的函数可以放在文件夹,命名为<code>delay.c</code>,再加入<code>delay.h</code>预编译文件,之后直接在文件中<code>#include &lt;delay.h&gt;</code>即可<br>文件<code>delay.h</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> _DELAY_H__</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> _DELAY_H__</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">delay</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> x)</span></span>;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408111939239.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>C语言的预编译以 <code>#</code> 开头，作用是在真正的编译开始之前，对代码做一些处理（预编译）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>预编译</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#include &lt;REGX52.H&gt;</code></td>
+<td>把 <code>REGX52.H</code> 文件的内容搬到此处</td>
+</tr>
+<tr>
+<td><code>#define PI 3.14</code></td>
+<td>定义 <code>PI</code>，将 <code>PI</code> 替换为 <code>3.14</code></td>
+</tr>
+<tr>
+<td><code>#define ABC</code></td>
+<td>定义 <code>ABC</code></td>
+</tr>
+<tr>
+<td><code>#ifndef __XX_H__</code></td>
+<td>如果没有定义 <code>__XX_H__</code></td>
+</tr>
+<tr>
+<td><code>#endif</code></td>
+<td>与 <code>#ifndef</code>，<code>#ifdef</code> 匹配，组成“括号”</td>
+</tr>
+</tbody></table>
+<p> 此外还有 <code>#ifdef</code>、<code>#if</code>、<code>#else</code>、<code>#elif</code>、<code>#undef</code> 等</p>
+<p>示例:<code>REGX52.H</code>头文件</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-comment">/*--------------------------------------------------------------------------</span><br><span class="hljs-comment">AT89X52.H</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">Header file for the low voltage Flash Atmel AT89C52 and AT89LV52.</span><br><span class="hljs-comment">Copyright (c) 1988-2002 Keil Elektronik GmbH and Keil Software, Inc.</span><br><span class="hljs-comment">All rights reserved.</span><br><span class="hljs-comment">--------------------------------------------------------------------------*/</span><br><br><span class="hljs-comment">#ifndef __AT89X52_H__</span><br><span class="hljs-comment">#define __AT89X52_H__</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">Byte Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br>sfr P0      = <span class="hljs-number">0x80</span>;<br>sfr <span class="hljs-built_in">SP</span>      = <span class="hljs-number">0x81</span>;<br>sfr DPL     = <span class="hljs-number">0x82</span>;<br>sfr DPH     = <span class="hljs-number">0x83</span>;<br>sfr PCON    = <span class="hljs-number">0x87</span>;<br>sfr TCON    = <span class="hljs-number">0x88</span>;<br>sfr TMOD    = <span class="hljs-number">0x89</span>;<br>sfr TL0     = <span class="hljs-number">0x8A</span>;<br>sfr TL1     = <span class="hljs-number">0x8B</span>;<br>sfr TH0     = <span class="hljs-number">0x8C</span>;<br>sfr TH1     = <span class="hljs-number">0x8D</span>;<br>sfr P1      = <span class="hljs-number">0x90</span>;<br>sfr <span class="hljs-keyword">SCON </span>   = <span class="hljs-number">0x98</span>;<br>sfr <span class="hljs-keyword">SBUF </span>   = <span class="hljs-number">0x99</span>;<br>sfr P2      = <span class="hljs-number">0xA0</span>;<br>sfr IE      = <span class="hljs-number">0xA8</span>;<br>sfr P3      = <span class="hljs-number">0xB0</span>;<br>sfr IP      = <span class="hljs-number">0xB8</span>;<br>sfr T2CON   = <span class="hljs-number">0xC8</span>;<br>sfr T2MOD   = <span class="hljs-number">0xC9</span>;<br>sfr RCAP2L  = <span class="hljs-number">0xCA</span>;<br>sfr RCAP2H  = <span class="hljs-number">0xCB</span>;<br>sfr TL2     = <span class="hljs-number">0xCC</span>;<br>sfr TH2     = <span class="hljs-number">0xCD</span>;<br>sfr PSW     = <span class="hljs-number">0xD0</span>;<br>sfr ACC     = <span class="hljs-number">0xE0</span>;<br>sfr <span class="hljs-keyword">B </span>      = <span class="hljs-number">0xF0</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">P0 Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>P0_0 = <span class="hljs-number">0x80</span>;<br><span class="hljs-keyword">sbit </span>P0_1 = <span class="hljs-number">0x81</span>;<br><span class="hljs-keyword">sbit </span>P0_2 = <span class="hljs-number">0x82</span>;<br><span class="hljs-keyword">sbit </span>P0_3 = <span class="hljs-number">0x83</span>;<br><span class="hljs-keyword">sbit </span>P0_4 = <span class="hljs-number">0x84</span>;<br><span class="hljs-keyword">sbit </span>P0_5 = <span class="hljs-number">0x85</span>;<br><span class="hljs-keyword">sbit </span>P0_6 = <span class="hljs-number">0x86</span>;<br><span class="hljs-keyword">sbit </span>P0_7 = <span class="hljs-number">0x87</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">PCON Bit Values</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-comment">#define IDL_    0x01</span><br><br><span class="hljs-comment">#define STOP_   0x02</span><br><span class="hljs-comment">#define PD_     0x02    /* Alternate definition */</span><br><br><span class="hljs-comment">#define GF0_    0x04</span><br><span class="hljs-comment">#define GF1_    0x08</span><br><span class="hljs-comment">#define SMOD_   0x80</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">TCON Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>IT0  = <span class="hljs-number">0x88</span>;<br><span class="hljs-keyword">sbit </span>IE0  = <span class="hljs-number">0x89</span>;<br><span class="hljs-keyword">sbit </span>IT1  = <span class="hljs-number">0x8A</span>;<br><span class="hljs-keyword">sbit </span>IE1  = <span class="hljs-number">0x8B</span>;<br><span class="hljs-keyword">sbit </span>TR0  = <span class="hljs-number">0x8C</span>;<br><span class="hljs-keyword">sbit </span>TF0  = <span class="hljs-number">0x8D</span>;<br><span class="hljs-keyword">sbit </span>TR1  = <span class="hljs-number">0x8E</span>;<br><span class="hljs-keyword">sbit </span>TF1  = <span class="hljs-number">0x8F</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">TMOD Bit Values</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-comment">#define T0_M0_   0x01</span><br><span class="hljs-comment">#define T0_M1_   0x02</span><br><span class="hljs-comment">#define T0_CT_   0x04</span><br><span class="hljs-comment">#define T0_GATE_ 0x08</span><br><span class="hljs-comment">#define T1_M0_   0x10</span><br><span class="hljs-comment">#define T1_M1_   0x20</span><br><span class="hljs-comment">#define T1_CT_   0x40</span><br><span class="hljs-comment">#define T1_GATE_ 0x80</span><br><br><span class="hljs-comment">#define T1_MASK_ 0xF0</span><br><span class="hljs-comment">#define T0_MASK_ 0x0F</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">P1 Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>P1_0 = <span class="hljs-number">0x90</span>;<br><span class="hljs-keyword">sbit </span>P1_1 = <span class="hljs-number">0x91</span>;<br><span class="hljs-keyword">sbit </span>P1_2 = <span class="hljs-number">0x92</span>;<br><span class="hljs-keyword">sbit </span>P1_3 = <span class="hljs-number">0x93</span>;<br><span class="hljs-keyword">sbit </span>P1_4 = <span class="hljs-number">0x94</span>;<br><span class="hljs-keyword">sbit </span>P1_5 = <span class="hljs-number">0x95</span>;<br><span class="hljs-keyword">sbit </span>P1_6 = <span class="hljs-number">0x96</span>;<br><span class="hljs-keyword">sbit </span>P1_7 = <span class="hljs-number">0x97</span>;<br><br><span class="hljs-keyword">sbit </span><span class="hljs-built_in">T2</span>   = <span class="hljs-number">0x90</span><span class="hljs-comment">;       /* External input to Timer/Counter 2, clock out */</span><br><span class="hljs-keyword">sbit </span>T2EX = <span class="hljs-number">0x91</span><span class="hljs-comment">;       /* Timer/Counter 2 capture/reload trigger &amp; dir ctl */</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">SCON Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>RI   = <span class="hljs-number">0x98</span>;<br><span class="hljs-keyword">sbit </span>TI   = <span class="hljs-number">0x99</span>;<br><span class="hljs-keyword">sbit </span>RB8  = <span class="hljs-number">0x9A</span>;<br><span class="hljs-keyword">sbit </span>TB8  = <span class="hljs-number">0x9B</span>;<br><span class="hljs-keyword">sbit </span>REN  = <span class="hljs-number">0x9C</span>;<br><span class="hljs-keyword">sbit </span>SM2  = <span class="hljs-number">0x9D</span>;<br><span class="hljs-keyword">sbit </span>SM1  = <span class="hljs-number">0x9E</span>;<br><span class="hljs-keyword">sbit </span>SM0  = <span class="hljs-number">0x9F</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">P2 Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>P2_0 = <span class="hljs-number">0xA0</span>;<br><span class="hljs-keyword">sbit </span>P2_1 = <span class="hljs-number">0xA1</span>;<br><span class="hljs-keyword">sbit </span>P2_2 = <span class="hljs-number">0xA2</span>;<br><span class="hljs-keyword">sbit </span>P2_3 = <span class="hljs-number">0xA3</span>;<br><span class="hljs-keyword">sbit </span>P2_4 = <span class="hljs-number">0xA4</span>;<br><span class="hljs-keyword">sbit </span>P2_5 = <span class="hljs-number">0xA5</span>;<br><span class="hljs-keyword">sbit </span>P2_6 = <span class="hljs-number">0xA6</span>;<br><span class="hljs-keyword">sbit </span>P2_7 = <span class="hljs-number">0xA7</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">IE Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>EX0  = <span class="hljs-number">0xA8</span><span class="hljs-comment">;       /* 1=Enable External interrupt 0 */</span><br><span class="hljs-keyword">sbit </span>ET0  = <span class="hljs-number">0xA9</span><span class="hljs-comment">;       /* 1=Enable Timer 0 interrupt */</span><br><span class="hljs-keyword">sbit </span>EX1  = <span class="hljs-number">0xAA</span><span class="hljs-comment">;       /* 1=Enable External interrupt 1 */</span><br><span class="hljs-keyword">sbit </span>ET1  = <span class="hljs-number">0xAB</span><span class="hljs-comment">;       /* 1=Enable Timer 1 interrupt */</span><br><span class="hljs-keyword">sbit </span>ES   = <span class="hljs-number">0xAC</span><span class="hljs-comment">;       /* 1=Enable Serial port interrupt */</span><br><span class="hljs-keyword">sbit </span>ET2  = <span class="hljs-number">0xAD</span><span class="hljs-comment">;       /* 1=Enable Timer 2 interrupt */</span><br><br><span class="hljs-keyword">sbit </span>EA   = <span class="hljs-number">0xAF</span><span class="hljs-comment">;       /* 0=Disable all interrupts */</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">P3 Bit Registers (Mnemonics &amp; Ports)</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>P3_0 = <span class="hljs-number">0xB0</span>;<br><span class="hljs-keyword">sbit </span>P3_1 = <span class="hljs-number">0xB1</span>;<br><span class="hljs-keyword">sbit </span>P3_2 = <span class="hljs-number">0xB2</span>;<br><span class="hljs-keyword">sbit </span>P3_3 = <span class="hljs-number">0xB3</span>;<br><span class="hljs-keyword">sbit </span>P3_4 = <span class="hljs-number">0xB4</span>;<br><span class="hljs-keyword">sbit </span>P3_5 = <span class="hljs-number">0xB5</span>;<br><span class="hljs-keyword">sbit </span>P3_6 = <span class="hljs-number">0xB6</span>;<br><span class="hljs-keyword">sbit </span>P3_7 = <span class="hljs-number">0xB7</span>;<br><br><span class="hljs-keyword">sbit </span>RXD  = <span class="hljs-number">0xB0</span><span class="hljs-comment">;       /* Serial data input */</span><br><span class="hljs-keyword">sbit </span>TXD  = <span class="hljs-number">0xB1</span><span class="hljs-comment">;       /* Serial data output */</span><br><span class="hljs-keyword">sbit </span>INT0 = <span class="hljs-number">0xB2</span><span class="hljs-comment">;       /* External interrupt 0 */</span><br><span class="hljs-keyword">sbit </span>INT1 = <span class="hljs-number">0xB3</span><span class="hljs-comment">;       /* External interrupt 1 */</span><br><span class="hljs-keyword">sbit </span><span class="hljs-built_in">T0</span>   = <span class="hljs-number">0xB4</span><span class="hljs-comment">;       /* Timer 0 external input */</span><br><span class="hljs-keyword">sbit </span><span class="hljs-built_in">T1</span>   = <span class="hljs-number">0xB5</span><span class="hljs-comment">;       /* Timer 1 external input */</span><br><span class="hljs-keyword">sbit </span>WR   = <span class="hljs-number">0xB6</span><span class="hljs-comment">;       /* External data memory write strobe */</span><br><span class="hljs-keyword">sbit </span>RD   = <span class="hljs-number">0xB7</span><span class="hljs-comment">;       /* External data memory read strobe */</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">IP Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>PX0  = <span class="hljs-number">0xB8</span>;<br><span class="hljs-keyword">sbit </span>PT0  = <span class="hljs-number">0xB9</span>;<br><span class="hljs-keyword">sbit </span>PX1  = <span class="hljs-number">0xBA</span>;<br><span class="hljs-keyword">sbit </span>PT1  = <span class="hljs-number">0xBB</span>;<br><span class="hljs-keyword">sbit </span>PS   = <span class="hljs-number">0xBC</span>;<br><span class="hljs-keyword">sbit </span>PT2  = <span class="hljs-number">0xBD</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">T2CON Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>CP_RL2= <span class="hljs-number">0xC8</span><span class="hljs-comment">;      /* 0=Reload, 1=Capture select */</span><br><span class="hljs-keyword">sbit </span>C_T2 = <span class="hljs-number">0xC9</span><span class="hljs-comment">;       /* 0=Timer, 1=Counter */</span><br><span class="hljs-keyword">sbit </span>TR2  = <span class="hljs-number">0xCA</span><span class="hljs-comment">;       /* 0=Stop timer, 1=Start timer */</span><br><span class="hljs-keyword">sbit </span>EXEN2= <span class="hljs-number">0xCB</span><span class="hljs-comment">;       /* Timer 2 external enable */</span><br><span class="hljs-keyword">sbit </span>TCLK = <span class="hljs-number">0xCC</span><span class="hljs-comment">;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */</span><br><span class="hljs-keyword">sbit </span>RCLK = <span class="hljs-number">0xCD</span><span class="hljs-comment">;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */</span><br><span class="hljs-keyword">sbit </span>EXF2 = <span class="hljs-number">0xCE</span><span class="hljs-comment">;       /* Timer 2 external flag */</span><br><span class="hljs-keyword">sbit </span>TF2  = <span class="hljs-number">0xCF</span><span class="hljs-comment">;       /* Timer 2 overflow flag */</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">T2MOD Bit Values</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-comment">#define DCEN_   0x01    /* 1=Timer 2 can be configured as up/down counter */</span><br><span class="hljs-comment">#define T2OE_   0x02    /* Timer 2 output enable */</span><br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">PSW Bit Registers</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-keyword">sbit </span>P    = <span class="hljs-number">0xD0</span>;<br><span class="hljs-keyword">sbit </span>F1   = <span class="hljs-number">0xD1</span>;<br><span class="hljs-keyword">sbit </span>OV   = <span class="hljs-number">0xD2</span>;<br><span class="hljs-keyword">sbit </span>RS0  = <span class="hljs-number">0xD3</span>;<br><span class="hljs-keyword">sbit </span>RS1  = <span class="hljs-number">0xD4</span>;<br><span class="hljs-keyword">sbit </span>F0   = <span class="hljs-number">0xD5</span>;<br><span class="hljs-keyword">sbit </span>AC   = <span class="hljs-number">0xD6</span>;<br><span class="hljs-keyword">sbit </span>CY   = <span class="hljs-number">0xD7</span>;<br><br><span class="hljs-comment">/*------------------------------------------------</span><br><span class="hljs-comment">Interrupt Vectors:</span><br><span class="hljs-comment">Interrupt Address = (Number * 8) + 3</span><br><span class="hljs-comment">------------------------------------------------*/</span><br><span class="hljs-comment">#define IE0_VECTOR	0  /* 0x03 External Interrupt 0 */</span><br><span class="hljs-comment">#define TF0_VECTOR	1  /* 0x0B Timer 0 */</span><br><span class="hljs-comment">#define IE1_VECTOR	2  /* 0x13 External Interrupt 1 */</span><br><span class="hljs-comment">#define TF1_VECTOR	3  /* 0x1B Timer 1 */</span><br><span class="hljs-comment">#define SIO_VECTOR	4  /* 0x23 Serial port */</span><br><br><span class="hljs-comment">#define TF2_VECTOR	5  /* 0x2B Timer 2 */</span><br><span class="hljs-comment">#define EX2_VECTOR	5  /* 0x2B External Interrupt 2 */</span><br><br><span class="hljs-comment">#endif</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="LCD1602"><a href="#LCD1602" class="headerlink" title="LCD1602"></a>LCD1602</h3><p>LCD1602是单片机的液晶屏,用于在单片机上的液晶屏上的调试,在Keil 5加入LCD1602的.c和.h文件后,打头文件即可使用里面的函数,具体说明在.c文件中.注意头文件是自己加的时用冒号代替&lt;&gt;.<br>有些函数有四个变量,分别是行,列,目标,长度,具体可以看lcd1602头文件.</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LCD_Init();</td>
+<td>初始化</td>
+</tr>
+<tr>
+<td>LCD_ShowChar(1,1,’A’);</td>
+<td>显示一个字符</td>
+</tr>
+<tr>
+<td>LCD_ShowString(1,3,”Hello”);</td>
+<td>显示字符串</td>
+</tr>
+<tr>
+<td>LCD_ShowNum(1,9,123,3);</td>
+<td>显示十进制数字</td>
+</tr>
+<tr>
+<td>LCD_ShowSignedNum(1,13,-66,2);</td>
+<td>显示有符号十进制数字</td>
+</tr>
+<tr>
+<td>LCD_ShowHexNum(2,1,0xA8,2);</td>
+<td>显示十六进制数字</td>
+</tr>
+<tr>
+<td>LCD_ShowBinNum(2,4,0xAA,8);</td>
+<td>显示二进制数字</td>
+</tr>
+</tbody></table>
+<h3 id="键盘扫描"><a href="#键盘扫描" class="headerlink" title="键盘扫描"></a>键盘扫描</h3><p>51单片机的矩阵键盘如图所示<br><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408151344503.png" srcset="/img/loading.gif" lazyload></p>
+<p>实现显示按键数的功能</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#include &lt;REGX52.H&gt;</span><br><span class="hljs-comment">#include &quot;LCD1602.h&quot;</span><br><br>void Delay(unsigned int xms)<br>&#123;<br>	unsigned char i, j;<br>	<span class="hljs-keyword">while</span>(xms--)<br>	&#123;<br>		i = 2;<br>		j = 239;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--j);<br>		&#125; <span class="hljs-keyword">while</span> (--i);<br>	&#125;<br>&#125;<br>unsigned char MatrixKey()<br>&#123;<br>	unsigned char <span class="hljs-attribute">KeyNumber</span>=0;<br>	<br>	<span class="hljs-attribute">P1</span>=0xFF;<br>	<span class="hljs-attribute">P1_3</span>=0;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_7</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_7</span>==0);Delay(20);KeyNumber=1;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_6</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_6</span>==0);Delay(20);KeyNumber=5;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_5</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_5</span>==0);Delay(20);KeyNumber=9;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_4</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_4</span>==0);Delay(20);KeyNumber=13;&#125;<br>	<br>	<span class="hljs-attribute">P1</span>=0xFF;<br>	<span class="hljs-attribute">P1_2</span>=0;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_7</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_7</span>==0);Delay(20);KeyNumber=2;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_6</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_6</span>==0);Delay(20);KeyNumber=6;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_5</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_5</span>==0);Delay(20);KeyNumber=10;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_4</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_4</span>==0);Delay(20);KeyNumber=14;&#125;<br>	<br>	<span class="hljs-attribute">P1</span>=0xFF;<br>	<span class="hljs-attribute">P1_1</span>=0;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_7</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_7</span>==0);Delay(20);KeyNumber=3;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_6</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_6</span>==0);Delay(20);KeyNumber=7;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_5</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_5</span>==0);Delay(20);KeyNumber=11;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_4</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_4</span>==0);Delay(20);KeyNumber=15;&#125;<br>	<br>	<span class="hljs-attribute">P1</span>=0xFF;<br>	<span class="hljs-attribute">P1_0</span>=0;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_7</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_7</span>==0);Delay(20);KeyNumber=4;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_6</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_6</span>==0);Delay(20);KeyNumber=8;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_5</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_5</span>==0);Delay(20);KeyNumber=12;&#125;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-attribute">P1_4</span>==0)&#123;Delay(20);<span class="hljs-keyword">while</span>(<span class="hljs-attribute">P1_4</span>==0);Delay(20);KeyNumber=16;&#125;<br>	<br>	return KeyNumber;<br>&#125;<br>void main()<br>&#123;<br>	LCD_Init();<br>	LCD_ShowString(1,1,<span class="hljs-string">&quot;Key:&quot;</span>);<br>	<span class="hljs-keyword">while</span>(1)<br>	&#123;<br>		int <span class="hljs-attribute">key</span>=MatrixKey();<br>		<span class="hljs-keyword">if</span>(key)LCD_ShowNum(2,1,key,2);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>其中原理是键盘扫描,首先，将<code>P1</code>口设置为全高电平 (<code>0xFF</code>)，然后将<code>P1_3</code>（对应第一列）设为低电平（0），以激活这一列。然后检查对应行的引脚（<code>P1_7</code>, <code>P1_6</code>, <code>P1_5</code>, <code>P1_4</code>），如果某一列的引脚为低电平，则表示该列上的按键被按下，记录按键编号为1、5、9、13。<br>密码锁:</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs maxima">void main()<br>&#123;<br>	LCD_Init();<br>	LCD_ShowString(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-string">&quot;Key:&quot;</span>);<br>	<span class="hljs-built_in">sum</span>=<span class="hljs-number">0</span>,<span class="hljs-built_in">key</span>=<span class="hljs-number">0</span>,<span class="hljs-built_in">time</span>=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">time</span>&lt;=<span class="hljs-number">4</span>)<br>	&#123;<br>		<span class="hljs-built_in">key</span>=MatrixKey();<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">key</span>)continue;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">key</span>&lt;<span class="hljs-number">10</span>)&#123;<span class="hljs-built_in">sum</span>=<span class="hljs-built_in">sum</span>*<span class="hljs-number">10</span>+<span class="hljs-built_in">key</span>;LCD_ShowNum(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">sum</span>,<span class="hljs-number">6</span>);<span class="hljs-built_in">time</span>++;&#125;<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">key</span>==<span class="hljs-number">10</span>)&#123;<span class="hljs-built_in">sum</span>*=<span class="hljs-number">10</span>;LCD_ShowNum(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">sum</span>,<span class="hljs-number">6</span>);<span class="hljs-built_in">time</span>++;&#125;<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">key</span>==<span class="hljs-number">11</span>)&#123;<span class="hljs-built_in">sum</span>/=<span class="hljs-number">10</span>;LCD_ShowNum(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">sum</span>,<span class="hljs-number">6</span>);<span class="hljs-built_in">time</span>--;&#125;<br>	&#125;<br>	<span class="hljs-built_in">key</span>=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">key</span>-<span class="hljs-number">16</span>)<span class="hljs-built_in">key</span>=MatrixKey();<br>	LCD_Init();<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">sum</span>==<span class="hljs-number">4587</span>)LCD_ShowString(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-string">&quot;Right&quot;</span>);<br>	<span class="hljs-keyword">else</span> LCD_ShowString(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-string">&quot;Wrong&quot;</span>);<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这个代码实现了输入4位数字后不再变化,而且按下四行四列按键时显示结果.</p>
+<p>总结:学习这一课,说明了单片机开发本质为代码给单片机发指令,比如检测时就通过设置高低电平来判断时哪个数字,<code>key=MatrixKey();</code>这行代码在循环体内运行时会返回大量的0,直至不返回0时才有下一步的操作.</p>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>在制作LED流水灯时,我们使用的是delay函数,这其实是一种很笨的方法,而且使得按键变得不灵敏,这一节我们会通过定时器实现这个效果.</p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/20240815170245.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408181044617.png" srcset="/img/loading.gif" lazyload><br>配置寄存器:<br><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408181032482.png" srcset="/img/loading.gif" lazyload><br>可位寻址:可以对一个单独的寄存器赋值.<br>不可位寻址:必须整个一行赋值.<br><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408210651584.png" srcset="/img/loading.gif" lazyload><img src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202408210652465.png" srcset="/img/loading.gif" lazyload><br>有这些信息,看电路图,我们可以写一个初始化函数</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs abnf">void timer0_init()<br>&#123;<br>    TMOD <span class="hljs-operator">=</span> <span class="hljs-number">0</span>x01<span class="hljs-comment">;  // 设置计时模式, 选择模式1（16位定时/计数模式）</span><br>    TF0 <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;      // 清除定时器0溢出标志位</span><br>    TR0 <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;      // 启动定时器0</span><br>    TH0 <span class="hljs-operator">=</span> <span class="hljs-number">0</span>xFF<span class="hljs-comment">;   // 设置定时器0的高8位寄存器TH0</span><br>    TL0 <span class="hljs-operator">=</span> <span class="hljs-number">0</span>xFF<span class="hljs-comment">;   // 设置定时器0的低8位寄存器TL0，在16位计时模式下，最大计数值为65536，设置FF FF为初始值</span><br>    // 开始设置中断<br>    ET0 <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;      // 允许定时器0中断</span><br>    EA <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;       // 开启总中断</span><br>    PT0 <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;      // 设置定时器0中断优先级为低（可选配置）</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>![[Pasted image 20240821071854.png]]<br>写一个中断函数:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> <span class="hljs-keyword">time</span>=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">void</span> timer_interrupt() interrupt <span class="hljs-number">1</span><span class="hljs-comment">//中断模式1</span><br>&#123;<br>	TH0=<span class="hljs-number">0</span>xFF;<br>	TL0=<span class="hljs-number">0</span>xFF;<span class="hljs-comment">//复位</span><br>	<span class="hljs-keyword">time</span>++;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-keyword">time</span>&gt;=<span class="hljs-number">1000</span>)<br>	&#123;<br>		<span class="hljs-keyword">time</span>=<span class="hljs-number">0</span>;<br>		P2_1=~P2_1;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>发现2号灯亮了,说明计时中断了,下面写一个程序实现1ms计时一次而不是1us,并改进TMOD赋值后面四位时为0001的功能:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">timer0_init</span>()</span><br>&#123;<br>    TMOD &amp;= <span class="hljs-number">0xF0</span>;  <br>    TMOD |= <span class="hljs-number">0x01</span>;<span class="hljs-comment">// 设置计时模式, 选择模式1（16位定时/计数模式）</span><br>    TF0 = <span class="hljs-number">0</span>;      <span class="hljs-comment">// 清除定时器0溢出标志位</span><br>    TR0 = <span class="hljs-number">1</span>;      <span class="hljs-comment">// 启动定时器0</span><br>    TH0 = <span class="hljs-number">0x18</span>;   <span class="hljs-comment">// 设置定时器0的高8位寄存器TH0</span><br>    TL0 = <span class="hljs-number">0xFC</span>;   <span class="hljs-comment">// 设置定时器0的低8位寄存器TL0，在16位计时模式下，最大计数值为65536，设置FF FF为初始值</span><br>    <span class="hljs-comment">// 开始设置中断</span><br>    ET0 = <span class="hljs-number">1</span>;      <span class="hljs-comment">// 允许定时器0中断</span><br>    EA = <span class="hljs-number">1</span>;       <span class="hljs-comment">// 开启总中断</span><br>    PT0 = <span class="hljs-number">0</span>;      <span class="hljs-comment">// 设置定时器0中断优先级为低（可选配置）</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在中断函数中定义time可以是<code>static unsigned time=0;</code><br>用计时器功能实现流水灯,引入头文件实现cror,可以不断左移u,移出去在右面补上.<br>完整代码如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;INTRINS.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;LCD1602.h&quot;</span></span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sum,key,time;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> keynum,ledmode=<span class="hljs-number">1</span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Delay</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> xms)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i, j;<br>	<span class="hljs-keyword">while</span>(xms--)<br>	&#123;<br>		i = <span class="hljs-number">2</span>;<br>		j = <span class="hljs-number">239</span>;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--j);<br>		&#125; <span class="hljs-keyword">while</span> (--i);<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">timer0_init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    TMOD &amp;= <span class="hljs-number">0xF0</span>;  <br>    TMOD |= <span class="hljs-number">0x01</span>;<br>    TF0 = <span class="hljs-number">0</span>;     <br>    TR0 = <span class="hljs-number">1</span>;     <br>    TH0 = <span class="hljs-number">0xFC</span>;   <br>    TL0 = <span class="hljs-number">0x18</span>;<br>    ET0 = <span class="hljs-number">1</span>;   <br>    EA = <span class="hljs-number">1</span>;      <br>    PT0 = <span class="hljs-number">0</span>;     <br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">timer_interrupt</span><span class="hljs-params">()</span> interrupt 1</span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">static</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> time=<span class="hljs-number">0</span>;<br>	TH0=<span class="hljs-number">0xFC</span>;<br>	TL0=<span class="hljs-number">0x18</span>;<br>	time++;<br>	<span class="hljs-keyword">if</span>(time&gt;=<span class="hljs-number">500</span>)<br>	&#123;<br>		time=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">if</span>(ledmode==<span class="hljs-number">1</span>)P2=_crol_(P2,<span class="hljs-number">1</span>);<br>		<span class="hljs-keyword">if</span>(ledmode==<span class="hljs-number">0</span>)P2=_cror_(P2,<span class="hljs-number">1</span>);<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> <span class="hljs-title">Keyboard</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> KeyNumber=<span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">if</span>(P3_1 == <span class="hljs-number">0</span>) &#123; <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); <span class="hljs-keyword">while</span>(P3_1 == <span class="hljs-number">0</span>); <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); KeyNumber = <span class="hljs-number">1</span>; &#125;<br>    <span class="hljs-keyword">if</span>(P3_0 == <span class="hljs-number">0</span>) &#123; <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); <span class="hljs-keyword">while</span>(P3_0 == <span class="hljs-number">0</span>); <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); KeyNumber = <span class="hljs-number">2</span>; &#125;<br>    <span class="hljs-keyword">if</span>(P3_2 == <span class="hljs-number">0</span>) &#123; <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); <span class="hljs-keyword">while</span>(P3_2 == <span class="hljs-number">0</span>); <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); KeyNumber = <span class="hljs-number">3</span>; &#125;<br>    <span class="hljs-keyword">if</span>(P3_3 == <span class="hljs-number">0</span>) &#123; <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); <span class="hljs-keyword">while</span>(P3_3 == <span class="hljs-number">0</span>); <span class="hljs-built_in">Delay</span>(<span class="hljs-number">20</span>); KeyNumber = <span class="hljs-number">4</span>; &#125;<br><br>    <span class="hljs-keyword">return</span> KeyNumber;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	P2=<span class="hljs-number">0xF7</span>;<br>	<span class="hljs-built_in">timer0_init</span>();<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		keynum=<span class="hljs-built_in">Keyboard</span>();<br>		<span class="hljs-keyword">if</span>(keynum)<br>		&#123;<br>			<span class="hljs-keyword">if</span>(keynum==<span class="hljs-number">1</span>)ledmode=<span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(keynum==<span class="hljs-number">2</span>)ledmode=<span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Notes/" class="category-chain-item">Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>51单片机</div>
+      <div>https://miao62.github.io/2026/03/06/51单片机/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 6, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/06/Future%20Contemplating-Test/" title="Future Contemplating-Test">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Future Contemplating-Test</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/06/CS%20300/" title="CS300-Java">
+                        <span class="hidden-mobile">CS300-Java</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
