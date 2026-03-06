@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
 <meta property="article:published_time" content="2026-03-06T06:54:05.432Z">
-<meta property="article:modified_time" content="2025-12-14T19:23:53.587Z">
+<meta property="article:modified_time" content="2026-03-06T07:40:47.342Z">
 <meta property="article:author" content="Miao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290917944.jpg">
@@ -472,8 +472,9 @@ runtime, the generic list will be erased to Base Type(Usually Object).
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;<span class="hljs-title class_">String</span>&gt; <span class="hljs-built_in">void</span> <span class="hljs-title function_">aaa</span>(<span class="hljs-params"><span class="hljs-title class_">String</span> a, <span class="hljs-title class_">String</span> b</span>)<br>&#123;<br>  <span class="hljs-keyword">return</span> a+b;<br>&#125;<br></code></pre></td></tr></table></figure> This will cause a compiler error: a and b will be
 recognized as Object during runtime.</p>
 <p>But if we use the toString, it will use the Overriddened String
-toString because of polymorphism. ##### Bounded type parameters
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scala">public static &lt;<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Number&gt;</span> <span class="hljs-title">void</span> <span class="hljs-title">aaa</span>(<span class="hljs-params">type[] a, type b</span>)</span><br></code></pre></td></tr></table></figure></p>
+toString because of polymorphism.</p>
+<h5 id="bounded-type-parameters">Bounded type parameters</h5>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scala">public static &lt;<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Number&gt;</span> <span class="hljs-title">void</span> <span class="hljs-title">aaa</span>(<span class="hljs-params">type[] a, type b</span>)</span><br></code></pre></td></tr></table></figure>
 <h5 id="generic-classes">Generic classes</h5>
 <p><img
 src="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202510052204078.png" srcset="/img/loading.gif" lazyload /></p>
@@ -670,9 +671,9 @@ level + last level displays from left to right -&gt; complete</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/06/51%E5%8D%95%E7%89%87%E6%9C%BA/" title="51单片机">
+                      <a href="/2026/03/06/Future%20Contemplating-Test/" title="Future Contemplating-Test">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">51单片机</span>
+                        <span class="hidden-mobile">Future Contemplating-Test</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -680,8 +681,8 @@ level + last level displays from left to right -&gt; complete</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/03/06/Cpp/" title="Cpp">
-                        <span class="hidden-mobile">Cpp</span>
+                      <a href="/2026/03/06/51%E5%8D%95%E7%89%87%E6%9C%BA/" title="51单片机">
+                        <span class="hidden-mobile">51单片机</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
