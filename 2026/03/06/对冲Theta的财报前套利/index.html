@@ -19,23 +19,23 @@
   <meta name="author" content="Miao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。 ### 一、 核心哲学：从赌徒到赌场 对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。 这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战： 1. 高昂的IV： 你在支付天价的">
+    <meta name="description" content="本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。 ### 一、 核心哲学：从赌徒到赌场 对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。 这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战： 1. 高昂的IV： 支付天价的保险">
 <meta property="og:type" content="article">
-<meta property="og:title" content="111">
+<meta property="og:title" content="对冲Theta的财报前套利">
 <meta property="og:url" content="https://miao62.github.io/2026/03/06/%E5%AF%B9%E5%86%B2Theta%E7%9A%84%E8%B4%A2%E6%8A%A5%E5%89%8D%E5%A5%97%E5%88%A9/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。 ### 一、 核心哲学：从赌徒到赌场 对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。 这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战： 1. 高昂的IV： 你在支付天价的">
+<meta property="og:description" content="本文所讨论的策略涉及期权Greeks（Delta, Vega, Theta, Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高级的风险。 ### 一、 核心哲学：从赌徒到赌场 对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。 这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战： 1. 高昂的IV： 支付天价的保险">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407282318154.jpg">
 <meta property="article:published_time" content="2026-03-06T06:54:05.476Z">
-<meta property="article:modified_time" content="2026-03-06T03:42:11.022Z">
+<meta property="article:modified_time" content="2026-03-06T09:08:27.407Z">
 <meta property="article:author" content="Miao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407282318154.jpg">
   
   
   
-  <title>111 - Hexo</title>
+  <title>对冲Theta的财报前套利 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="111"></span>
+            <span id="subtitle" data-typed-text="对冲Theta的财报前套利"></span>
           
         </div>
 
@@ -285,7 +285,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">111</h1>
+            <h1 id="seo-header">对冲Theta的财报前套利</h1>
             
             
               <div class="markdown-body">
@@ -295,20 +295,20 @@ Gamma）管理。它绝非稳赚不赔的公式，而是也包含特定的、高
 一、 核心哲学：从赌徒到赌场</p>
 <p>对于大部分的散户来说，赌财报就是买一张Call或Put，然后在财报公布后祈祷。</p>
 <p>这是一种低胜率的二元赌博。不仅要猜对方向靠Delta盈利，还要和两个看不见的敌人作战：
-1. 高昂的IV： 你在支付天价的保险费。 2. 恐怖的Theta：
-你的期权每一秒都在融化。</p>
+1. 高昂的IV： 支付天价的保险费。 2. 恐怖的Theta：
+期权每一秒都在融化。</p>
 <p>而专业策略的意义是反转这个游戏。我们不当赌徒而利用市场的不确定性来开设赌场。我们此时设计的这套策略，其核心思想是：我们不赌财报事件本身，我们只套利市场在财报前必然会产生的预期。</p>
 <p>具体来说，我们套利的是三件事： 1. Vega 收益：
 在静默期内，市场对不确定性的恐慌会必然推高IV。 2. Delta 收益：
 在多空分歧的标的上，乐观情绪大概率会带来财报前的股价攀升。 3. Theta
 对冲: 在静默期内, 由于基本面利好利空消息的封闭,
-我们可以采用卖出短腿OTM期权的形式来对冲掉Theta, 一般我偏向保守,
+我们可以采用卖出短腿OTM期权的形式来对冲掉Theta, 一般偏向保守,
 卖Delta0.2左右的短腿。</p>
 <h3 id="二-一个月内的剧本">二、 一个月内的剧本</h3>
 <p>这是一个高资本效率、Theta中性的Diagonal Debit Spread。</p>
 <h5 id="步骤一选股这是策略的灵魂">步骤一：选股（这是策略的灵魂）</h5>
 <p>不能在市场极度看涨的标的上用这套策略。我们必须挑选基本面有瑕疵，但市场情绪分歧的标的（例如2025Q3财报前的Meta,
-目前我在看的SNPS）。</p>
+目前的SNPS）。</p>
 <p>选股标准必须同时满足三个条件： 1. 基本面有瑕疵：
 比如SNPS的IP业务暴雷和Meta的AI支出不确定性。这保证了空头的力量，为市场注入了不确定性（IV的燃料）。
 2. 乐观情绪占优： 比如市场相信Ansys收购的长期故事,
@@ -380,7 +380,7 @@ Diagonal仓位（-Delta, +Vega, +Theta）。此时，我们最大的风险就变
     
       <span class="category-chain">
         
-  <a href="/categories/other/" class="category-chain-item">other</a>
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
   
   
 
@@ -400,7 +400,7 @@ Diagonal仓位（-Delta, +Vega, +Theta）。此时，我们最大的风险就变
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>111</div>
+      <div>对冲Theta的财报前套利</div>
       <div>https://miao62.github.io/2026/03/06/对冲Theta的财报前套利/</div>
     </div>
     <div class="license-meta">
@@ -445,9 +445,9 @@ Diagonal仓位（-Delta, +Vega, +Theta）。此时，我们最大的风险就变
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/06/%E5%BE%AE%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" title="微电子电路">
+                      <a href="/2026/03/06/MATH%20431%20%E7%AC%AC%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A/" title="MATH 431 第一章作业">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">微电子电路</span>
+                        <span class="hidden-mobile">MATH 431 第一章作业</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
