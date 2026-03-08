@@ -19,16 +19,16 @@
   <meta name="author" content="Miao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="12345678910111213141516171819@echo offcd &#x2F;d C:\Users\Miao\Hexoecho Starting Git backup...git add .git commit -m &quot;Auto backup %date% %time%&quot;git push origin mainecho Running &#x27;hexo clean&amp;#">
+    <meta name="description" content="12345678910111213@echo offchcp 65001 &gt;nulcd &#x2F;d C:\Users\Miao\Hexoecho [开始备份源码]git pull origin maingit add .git commit -m &quot;Source backup: %DATE% %TIME%&quot;git push origin mainecho.echo 备份完成。p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo备份部署代码">
 <meta property="og:url" content="https://miao62.github.io/2026/03/08/Hexo%E5%A4%87%E4%BB%BD%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="12345678910111213141516171819@echo offcd &#x2F;d C:\Users\Miao\Hexoecho Starting Git backup...git add .git commit -m &quot;Auto backup %date% %time%&quot;git push origin mainecho Running &#x27;hexo clean&amp;#">
+<meta property="og:description" content="12345678910111213@echo offchcp 65001 &gt;nulcd &#x2F;d C:\Users\Miao\Hexoecho [开始备份源码]git pull origin maingit add .git commit -m &quot;Source backup: %DATE% %TIME%&quot;git push origin mainecho.echo 备份完成。p">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290914164.jpg">
 <meta property="article:published_time" content="2026-03-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-08T06:17:41.253Z">
+<meta property="article:modified_time" content="2026-03-08T07:23:26.507Z">
 <meta property="article:author" content="Miao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picturemiao58.oss-cn-shanghai.aliyuncs.com/202407290914164.jpg">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28 words
+          48 words
         
       </span>
     
@@ -292,7 +292,8 @@
             
               <div class="markdown-body">
                 
-                <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">@<span class="hljs-keyword">echo</span> off<br><span class="hljs-keyword">cd</span> <span class="hljs-string">/d</span> C:\Users\Miao\Hexo<br><br><span class="hljs-keyword">echo</span> Starting Git backup.<span class="hljs-string">..</span><br>git add .<br>git commit -m <span class="hljs-string">&quot;Auto backup %date% %time%&quot;</span><br>git push origin main<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo clean&#x27;<span class="hljs-string">...</span><br>call hexo clean<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo generate&#x27;<span class="hljs-string">...</span><br>call hexo generate<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo <span class="hljs-keyword">deploy</span>&#x27;<span class="hljs-string">...</span><br>call hexo <span class="hljs-keyword">deploy</span><br><br><span class="hljs-keyword">echo</span> Task completed.<br>pause<br></code></pre></td></tr></table></figure>
+                <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs dos">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">chcp</span> <span class="hljs-number">65001</span> &gt;<span class="hljs-built_in">nul</span><br><span class="hljs-built_in">cd</span> /d C:\Users\Miao\Hexo<br><br><span class="hljs-built_in">echo</span> [开始备份源码]<br>git pull origin main<br>git add .<br>git commit -m &quot;Source backup: <span class="hljs-variable">%DATE%</span> <span class="hljs-variable">%TIME%</span>&quot;<br>git push origin main<br><br><span class="hljs-built_in">echo</span>.<br><span class="hljs-built_in">echo</span> 备份完成。<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs dos">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">cd</span> /d C:\Users\Miao\Hexo<br><br><span class="hljs-built_in">echo</span> [开始生成与部署]<br><span class="hljs-keyword">call</span> hexo clean<br><span class="hljs-keyword">call</span> hexo g<br><span class="hljs-keyword">call</span> hexo d<br><br><span class="hljs-built_in">echo</span>.<br><span class="hljs-built_in">echo</span> 部署完成。<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
