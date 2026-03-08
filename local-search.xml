@@ -4,25 +4,6 @@
   
   
   <entry>
-    <title>Hexo备份部署代码</title>
-    <link href="/2026/03/08/Hexo%E5%A4%87%E4%BB%BD%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/"/>
-    <url>/2026/03/08/Hexo%E5%A4%87%E4%BB%BD%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</url>
-    
-    <content type="html"><![CDATA[<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">@<span class="hljs-keyword">echo</span> off<br><span class="hljs-keyword">cd</span> <span class="hljs-string">/d</span> C:\Users\Miao\Hexo<br><br><span class="hljs-keyword">echo</span> Starting Git backup.<span class="hljs-string">..</span><br>git add .<br>git commit -m <span class="hljs-string">&quot;Auto backup %date% %time%&quot;</span><br>git push origin main<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo clean&#x27;<span class="hljs-string">...</span><br>call hexo clean<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo generate&#x27;<span class="hljs-string">...</span><br>call hexo generate<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo <span class="hljs-keyword">deploy</span>&#x27;<span class="hljs-string">...</span><br>call hexo <span class="hljs-keyword">deploy</span><br><br><span class="hljs-keyword">echo</span> Task completed.<br>pause<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>Others</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>260302美股记录</title>
     <link href="/2026/03/08/260302%E7%BE%8E%E8%82%A1%E8%AE%B0%E5%BD%95/"/>
     <url>/2026/03/08/260302%E7%BE%8E%E8%82%A1%E8%AE%B0%E5%BD%95/</url>
@@ -33,6 +14,25 @@
     <categories>
       
       <category>Finance</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hexo备份部署代码</title>
+    <link href="/2026/03/08/Hexo%E5%A4%87%E4%BB%BD%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/"/>
+    <url>/2026/03/08/Hexo%E5%A4%87%E4%BB%BD%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">@<span class="hljs-keyword">echo</span> off<br><span class="hljs-keyword">cd</span> <span class="hljs-string">/d</span> C:\Users\Miao\Hexo<br><br><span class="hljs-keyword">echo</span> Starting Git backup.<span class="hljs-string">..</span><br>git add .<br>git commit -m <span class="hljs-string">&quot;Auto backup %date% %time%&quot;</span><br>git push origin main<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo clean&#x27;<span class="hljs-string">...</span><br>call hexo clean<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo generate&#x27;<span class="hljs-string">...</span><br>call hexo generate<br><br><span class="hljs-keyword">echo</span> Running &#x27;hexo <span class="hljs-keyword">deploy</span>&#x27;<span class="hljs-string">...</span><br>call hexo <span class="hljs-keyword">deploy</span><br><br><span class="hljs-keyword">echo</span> Task completed.<br>pause<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Others</category>
       
     </categories>
     
